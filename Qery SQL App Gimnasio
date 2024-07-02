@@ -1,11 +1,13 @@
 -- Creación de la base de datos si no existe
-CREATE DATABASE IF NOT EXISTS APP_GYMBRO;
+DROP DATABASE IF EXISTS APP_GYMBRO;
+
+CREATE DATABASE APP_GYMBRO;
 
 -- Usar la base de datos APP_GYMBRO
 USE APP_GYMBRO;
 
 -- Tabla de Clientes - Almacena información sobre los clientes que realizan reservas
-CREATE TABLE IF NOT EXISTS Cliente (
+CREATE TABLE Cliente (
     ID_Cliente INT AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR(50) NOT NULL,
     FechaNacimiento INT NOT NULL,
@@ -15,16 +17,17 @@ CREATE TABLE IF NOT EXISTS Cliente (
 );
 
 -- Tabla de Franquicias - Almacena información sobre las distintas franquicias que hay de la cadena de gimnasio donde se realizan reservas
-CREATE TABLE IF NOT EXISTS Franquicia (
-    ID_Franquicia INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Franquicia (
+    ID_Franquicia INT AUTO_INCREMENT,
     Nombre VARCHAR(50) NOT NULL,
     Direccion VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
-    Telefonos VARCHAR(50) NOT NULL
+    Telefonos VARCHAR(50) NOT NULL,
+    PRIMARY	KEY (ID_Franquicia)
 );
 
 -- Tabla de Empleados - Contiene información sobre los empleados involucrados en el proceso de reservas
-CREATE TABLE IF NOT EXISTS Empleados (
+CREATE TABLE Empleados (
     ID_Empleado INT AUTO_INCREMENT PRIMARY KEY,
     ID_Franquicia INT, -- Puede ser una referencia a la sucursal si es necesario
     Nombre VARCHAR(100) NOT NULL,
@@ -35,14 +38,14 @@ CREATE TABLE IF NOT EXISTS Empleados (
 );
 
 -- Tabla de Tipo de reservas - Contiene información sobre que tipo de clase reserva la persona
-CREATE TABLE IF NOT EXISTS TipoReserva (
+CREATE TABLE TipoReserva (
     ID_TipoReserva INT AUTO_INCREMENT PRIMARY KEY,
     Tipo VARCHAR(100) NOT NULL,
     Descripcion TEXT
 );
 
 -- Tabla de Reserva - Almacena información sobre la reserva (hora/dia/tipo/franquicia)
-CREATE TABLE IF NOT EXISTS Reserva (
+CREATE TABLE Reserva (
     ID_Reserva INT AUTO_INCREMENT PRIMARY KEY,
     ID_Cliente INT NOT NULL,
     ID_Empleado INT NOT NULL,
