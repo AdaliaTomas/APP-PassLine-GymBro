@@ -48,4 +48,3 @@ Gestión de la disponibilidad de clases, horarios y sucursal en cada gimnasio.
 Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, franquicia, empleado y tipo de reserva.
 En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en gimnasios, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar las operaciones del gimnasio. */
 
-MEDIOS DE RESERVAS
