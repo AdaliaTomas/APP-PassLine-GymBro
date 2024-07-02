@@ -48,5 +48,4 @@ Gestión de la disponibilidad de clases, horarios y sucursal en cada gimnasio.
 Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, franquicia, empleado y tipo de reserva.
 En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en gimnasios, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar las operaciones del gimnasio. */
 
-
-
+![image](https://github.com/AdaliaTomas/Futbol5-Adalia/assets/174365713/fe37d833-7b5c-4072-95e6-8379a38f05ff)
