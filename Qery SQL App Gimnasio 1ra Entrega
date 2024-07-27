@@ -36,11 +36,13 @@ CREATE TABLE Empleados (
     Descripcion TEXT
 );
 
--- Tabla de Tipo de reservas - Contiene información sobre que tipo de clase reserva la persona
+-- Tabla de Tipo de reservas - Contiene información sobre que tipo de espacio para su clase reserva la persona (Indoor, Aire libre, Pileta, Box pilates)
 CREATE TABLE TipoReserva (
     ID_TipoReserva INT AUTO_INCREMENT PRIMARY KEY,
     Tipo VARCHAR(100) NOT NULL,
-    Descripcion TEXT
+    Descripcion TEXT,
+    Disponible text,
+    Cancelacion text
 );
 
 -- Tabla de Reserva - Almacena información sobre la reserva (hora/dia/tipo/franquicia)
@@ -51,6 +53,7 @@ CREATE TABLE Reserva (
     ID_Franquicia INT NOT NULL,
     ID_TipoReserva INT NOT NULL,
     Fecha DATE NOT NULL,
+    Cancelacion TEXT,
     FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente),
     FOREIGN KEY (ID_Empleado) REFERENCES Empleados(ID_Empleado),
     FOREIGN KEY (ID_Franquicia) REFERENCES Franquicia(ID_Franquicia),
