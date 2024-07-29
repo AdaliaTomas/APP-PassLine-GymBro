@@ -25,6 +25,16 @@ SELECT
 *
 FROM vista_reservas;
 
+La vista Vista_Reservas utiliza las siguientes tablas:
+
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Cliente: Contiene información sobre los clientes del gimnasio.
+Franquicia: Contiene información sobre las franquicias donde se realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clase disponibles.
+Horario: Contiene información sobre los horarios de las clases.
+
+----------------------------------------------------------------------------------------------------------------------
+
 -- Vista Reservas Cliente: Obtener el nombre del empleado que realizó la mayor cantidad de reservas para cada cliente --
 
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Cliente AS (
@@ -54,6 +64,16 @@ JOIN Horario h ON r.ID_Horario = h.ID_Horario);
 SELECT *
 FROM Vista_Reservas_Cliente;
 
+La vista Vista_Reservas_Cliente utiliza las siguientes tablas:
+
+Cliente: Contiene información sobre los clientes del gimnasio.
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Franquicia: Contiene información sobre las franquicias donde se realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clase disponibles.
+Horario: Contiene información sobre los horarios de las clases.
+
+----------------------------------------------------------------------------------------------------------------------
+
 -- Esta vista muestra información sobre los empleados y la franquicia en la que trabajan, esta ordenado por cada franquicia --
 
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Empleados_Franquicia AS 
@@ -70,6 +90,13 @@ order by f.nombre;
 
 SELECT *
 FROM Vista_Empleados_Franquicia;
+
+La vista Vista_Empleados_Franquicia utiliza las siguientes tablas:
+
+Empleados: Contiene información sobre los empleados que trabajan en las franquicias.
+Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
+
+----------------------------------------------------------------------------------------------------------------------
 
 -- Vista Reservas Franquicia: Obtener el tipo de clase más reservada en cada franquicia
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Franquicia AS
@@ -97,3 +124,11 @@ JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
 JOIN Horario h ON r.ID_Horario = h.ID_Horario;
 
 SELECT * FROM APP_GYMBRO.Vista_Reservas_Franquicia;
+
+La vista Vista_Reservas_Franquicia utiliza las siguientes tablas:
+
+Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Cliente: Almacena información sobre los clientes que realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clases disponibles en el gimnasio.
+Horario: Contiene información sobre los horarios disponibles para las clases y reservas.
