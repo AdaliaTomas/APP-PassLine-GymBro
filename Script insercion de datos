@@ -13,14 +13,29 @@ INSERT INTO Cliente (Nombre, Nacimiento, Edad, Email, Telefono) VALUES
 ('Jose Garcia', '1981-07-03', 43, 'jose.garcia@example.com', '555-4567'),
 ('Carla Fernandez', '1993-10-08', 30, 'carla.fernandez@example.com', '555-9876'),
 ('Miguel Rodriguez', '1986-02-25', 38, 'miguel.rodriguez@example.com', '555-5432'),
-('Elena Moreno', '1991-12-13', 32, 'elena.moreno@example.com', '555-6543'),
+('Elena Moreno', '1991-12-13', 29, 'elena.moreno@example.com', '555-6543'),
 ('Jorge Morales', '1979-04-05', 45, 'jorge.morales@example.com', '555-3210'),
 ('Laura Cruz', '1984-11-22', 39, 'laura.cruz@example.com', '555-2109'),
 ('Roberto Vega', '1980-08-11', 43, 'roberto.vega@example.com', '555-1098'),
 ('Natalia Romero', '1994-01-30', 30, 'natalia.romero@example.com', '555-0987'),
 ('Daniel Ortiz', '1989-06-18', 34, 'daniel.ortiz@example.com', '555-8907'),
 ('Gabriela Vazquez', '1985-09-23', 38, 'gabriela.vazquez@example.com', '555-6780'),
-('Alberto Herrera', '1987-10-15', 36, 'alberto.herrera@example.com', '555-8763');
+('Alberto Herrera', '1987-10-15', 36, 'alberto.herrera@example.com', '555-8763'),
+('Pedro Martinez', '1985-11-22', 38, 'pedro.martinez@example.com', '555-1235'),
+('Julia Fernandez', '1994-03-29', 30, 'julia.fernandez@example.com', '555-1236'),
+('Victor Salazar', '1980-09-09', 43, 'victor.salazar@example.com', '555-1237'),
+('Veronica Ramirez', '1992-01-11', 32, 'veronica.ramirez@example.com', '555-1238'),
+('Ricardo Vega', '1986-06-15', 37, 'ricardo.vega@example.com', '555-1239'),
+('Gabriela Ortega', '1989-12-20', 34, 'gabriela.ortega@example.com', '555-1240'),
+('Fernando Castillo', '1991-05-17', 33, 'fernando.castillo@example.com', '555-1241'),
+('Isabel Sanchez', '1984-08-25', 39, 'isabel.sanchez@example.com', '555-1242'),
+('Eduardo Ruiz', '1996-02-14', 28, 'eduardo.ruiz@example.com', '555-1243'),
+('Carmen Torres', '1983-10-30', 40, 'carmen.torres@example.com', '555-1244'),
+('Ricardo Morales', '1979-07-09', 45, 'ricardo.morales@example.com', '555-1245'),
+('Alicia Moreno', '1987-03-18', 37, 'alicia.moreno@example.com', '555-1246'),
+('Manuel Jimenez', '1992-09-29', 31, 'manuel.jimenez@example.com', '555-1247'),
+('Susana Castro', '1988-01-25', 36, 'susana.castro@example.com', '555-1248'),
+('Laura Rodriguez', '1994-07-12', 29, 'laura.rodriguez@example.com', '555-1249');
 
 -- DATOS DE LA TABLA FRANQUICIA
 
@@ -109,7 +124,9 @@ INSERT INTO Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponi
 -- Clase de Aeróbic
 (5, 2, '20:45-21:45', 'Clase de aeróbic', TRUE, '2024-07-30 12:00:00'),
 -- Clase de Crossfit
-(6, 2, '22:00-23:00', 'Clase de crossfit', TRUE, '2024-07-30 12:00:00');
+(6, 2, '22:00-23:00', 'Clase de crossfit', TRUE, '2024-07-30 12:00:00'),
+-- Clase de Musculación (añadida para mayor variedad)
+(3, 1, '08:00-09:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00');
 
 -- Horarios para clases de musculación
 INSERT INTO Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
@@ -127,3 +144,28 @@ INSERT INTO Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponi
 (3, 1, '19:30-20:30', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
 (3, 1, '20:45-21:45', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
 (3, 1, '22:00-23:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00');
+
+-- DATOS DE LA TABLA RESERVAS
+
+INSERT INTO Reserva (ID_Cliente, ID_Empleados, ID_Franquicia, ID_TipoReserva, ID_TipoClase, ID_Horario, Fecha, Cancelacion) VALUES
+(1, 1, 1, 1, 1, 1, '2024-07-29 07:00:00', NULL),
+(2, 2, 1, 1, 2, 2, '2024-07-29 08:15:00', NULL),
+(3, 3, 2, 1, 3, 3, '2024-07-29 09:30:00', NULL),
+(4, 4, 2, 1, 4, 4, '2024-07-29 10:45:00', NULL),
+(5, 5, 3, 1, 5, 5, '2024-07-29 12:00:00', NULL),
+(6, 6, 3, 1, 6, 6, '2024-07-29 13:15:00', NULL),
+(7, 7, 4, 1, 7, 7, '2024-07-29 14:30:00', NULL),
+(8, 8, 4, 1, 8, 8, '2024-07-29 15:45:00', NULL),
+(9, 9, 5, 1, 9, 9, '2024-07-29 17:00:00', NULL),
+(10, 10, 5, 1, 1, 1, '2024-07-29 18:15:00', NULL),
+(11, 1, 1, 2, 2, 2, '2024-07-30 08:00:00', NULL),
+(12, 2, 2, 2, 3, 3, '2024-07-30 09:15:00', NULL),
+(13, 3, 3, 2, 4, 4, '2024-07-30 10:30:00', NULL),
+(14, 4, 4, 2, 5, 5, '2024-07-30 11:45:00', NULL),
+(15, 5, 5, 2, 6, 6, '2024-07-30 13:00:00', NULL),
+(16, 6, 1, 2, 7, 7, '2024-07-30 14:15:00', NULL),
+(17, 7, 2, 2, 8, 8, '2024-07-30 15:30:00', NULL),
+(18, 8, 3, 2, 9, 9, '2024-07-30 16:45:00', NULL),
+(19, 9, 4, 2, 1, 1, '2024-07-30 18:00:00', NULL),
+(20, 10, 5, 2, 2, 2, '2024-07-30 19:15:00', NULL);
+
