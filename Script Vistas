@@ -1,0 +1,102 @@
+-- Vistas con subconsultas
+
+-- VistaReservas: Contar el número de reservas por cliente --
+
+CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas AS (
+SELECT 
+    r.ID_Reserva, 
+    c.Nombre AS Cliente, 
+    f.Nombre AS Franquicia, 
+    t.Tipo AS TipoClase, 
+    h.Horario, 
+    r.Fecha,
+    (SELECT COUNT(*) 
+     FROM Reserva r2 
+     WHERE r2.ID_Cliente = r.ID_Cliente) AS Total_Reservas_Cliente
+FROM Reserva r
+LEFT JOIN Cliente c ON r.ID_Cliente = c.ID_Cliente
+LEFT JOIN Franquicia f ON r.ID_Franquicia = f.ID_Franquicia
+LEFT JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
+LEFT JOIN Horario h ON r.ID_Horario = h.ID_Horario
+ORDER BY c.Nombre
+);
+
+SELECT 
+*
+FROM vista_reservas;
+
+-- VistaReservasCliente: Obtener el nombre del empleado que realizó la mayor cantidad de reservas para cada cliente --
+
+CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Cliente AS (
+SELECT 
+    c.ID_Cliente, 
+    c.Nombre AS Cliente, 
+    r.ID_Reserva, 
+    f.Nombre AS Franquicia, 
+    t.Tipo AS TipoClase, 
+    h.Horario, 
+    r.Fecha,
+    (SELECT e.Nombre 
+     FROM Empleados e 
+     WHERE e.ID_Empleados = (
+         SELECT r2.ID_Empleados 
+         FROM Reserva r2 
+         WHERE r2.ID_Cliente = c.ID_Cliente 
+         GROUP BY r2.ID_Empleados 
+         ORDER BY COUNT(*) DESC 
+         LIMIT 1)) AS Empleado_Frecuente
+FROM Cliente c
+JOIN Reserva r ON c.ID_Cliente = r.ID_Cliente
+JOIN Franquicia f ON r.ID_Franquicia = f.ID_Franquicia
+JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
+JOIN Horario h ON r.ID_Horario = h.ID_Horario);
+
+SELECT *
+FROM Vista_Reservas_Cliente;
+
+-- Esta vista muestra información sobre los empleados y la franquicia en la que trabajan, esta ordenado por cada franquicia --
+
+CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Empleados_Franquicia AS 
+SELECT 
+    e.ID_Empleados, 
+    e.Nombre AS Empleado, 
+    f.Nombre AS Franquicia, 
+    e.Telefono, 
+    e.Email,
+    e.Descripcion
+FROM Empleados e
+LEFT JOIN Franquicia f ON e.ID_Franquicia = f.ID_Franquicia
+order by f.nombre;
+
+SELECT *
+FROM Vista_Empleados_Franquicia;
+
+-- Vista Reservas Franquicia: Obtener el tipo de clase más reservada en cada franquicia
+CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Franquicia AS
+SELECT 
+    f.ID_Franquicia, 
+    f.Nombre AS Franquicia, 
+    r.ID_Reserva, 
+    c.Nombre AS Cliente, 
+    t.Tipo AS TipoClase, 
+    h.Horario, 
+    r.Fecha,
+    (SELECT t2.Tipo 
+     FROM TipoClase t2 
+     WHERE t2.ID_TipoClase = (
+         SELECT r2.ID_TipoClase 
+         FROM Reserva r2 
+         WHERE r2.ID_Franquicia = f.ID_Franquicia 
+         GROUP BY r2.ID_TipoClase 
+         ORDER BY COUNT(*) DESC 
+         LIMIT 1)) AS ClasePopular
+FROM Franquicia f
+JOIN Reserva r ON f.ID_Franquicia = r.ID_Franquicia
+JOIN Cliente c ON r.ID_Cliente = c.ID_Cliente
+JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
+JOIN Horario h ON r.ID_Horario = h.ID_Horario;
+
+SELECT * FROM APP_GYMBRO.Vista_Reservas_Franquicia;
+    FOREIGN KEY (ID_TipoClase) REFERENCES TipoClase(ID_TipoClase),
+    FOREIGN KEY (ID_Horario) REFERENCES Horario(ID_Horario)
+);
