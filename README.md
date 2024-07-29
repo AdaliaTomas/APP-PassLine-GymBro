@@ -49,3 +49,7 @@ Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, fra
 En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en gimnasios, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar las operaciones del gimnasio. */
 
 ![image](https://github.com/AdaliaTomas/Futbol5-Adalia/assets/174365713/fe37d833-7b5c-4072-95e6-8379a38f05ff)
+
+
+
+![image](https://github.com/user-attachments/assets/03273b92-ff3a-4e26-8ead-95626ab1bc96)
