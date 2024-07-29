@@ -345,6 +345,3 @@ JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
 JOIN Horario h ON r.ID_Horario = h.ID_Horario;
 
 SELECT * FROM APP_GYMBRO.Vista_Reservas_Franquicia;
-    FOREIGN KEY (ID_TipoClase) REFERENCES TipoClase(ID_TipoClase),
-    FOREIGN KEY (ID_Horario) REFERENCES Horario(ID_Horario)
-);
