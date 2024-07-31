@@ -18,7 +18,7 @@ LEFT JOIN Cliente c ON r.ID_Cliente = c.ID_Cliente
 LEFT JOIN Franquicia f ON r.ID_Franquicia = f.ID_Franquicia
 LEFT JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
 LEFT JOIN Horario h ON r.ID_Horario = h.ID_Horario
-ORDER BY c.Nombre
+ORDER BY Total_Reservas_Cliente desc, franquicia desc, CLIENTE DESC
 );
 
 SELECT 
@@ -33,9 +33,9 @@ Franquicia: Contiene información sobre las franquicias donde se realizan las re
 TipoClase: Contiene información sobre los tipos de clase disponibles.
 Horario: Contiene información sobre los horarios de las clases.
 
-----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
--- Vista Reservas Cliente: Obtener el nombre del empleado que realizó la mayor cantidad de reservas para cada cliente --
+-- VistaReservasCliente: Obtener el nombre del empleado que realizó la mayor cantidad de reservas para cada cliente --
 
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Cliente AS (
 SELECT 
@@ -59,7 +59,9 @@ FROM Cliente c
 JOIN Reserva r ON c.ID_Cliente = r.ID_Cliente
 JOIN Franquicia f ON r.ID_Franquicia = f.ID_Franquicia
 JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
-JOIN Horario h ON r.ID_Horario = h.ID_Horario);
+JOIN Horario h ON r.ID_Horario = h.ID_Horario
+ORDER BY Empleado_frecuente desc, franquicia desc
+);
 
 SELECT *
 FROM Vista_Reservas_Cliente;
@@ -72,9 +74,9 @@ Franquicia: Contiene información sobre las franquicias donde se realizan las re
 TipoClase: Contiene información sobre los tipos de clase disponibles.
 Horario: Contiene información sobre los horarios de las clases.
 
-----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
--- Esta vista muestra información sobre los empleados y la franquicia en la que trabajan, esta ordenado por cada franquicia --
+-- Esta vista muestra información sobre los empleados y la franquicia en la que trabajan, esta ordenado por cada franquicia
 
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Empleados_Franquicia AS 
 SELECT 
@@ -96,7 +98,7 @@ La vista Vista_Empleados_Franquicia utiliza las siguientes tablas:
 Empleados: Contiene información sobre los empleados que trabajan en las franquicias.
 Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
 
-----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 -- Vista Reservas Franquicia: Obtener el tipo de clase más reservada en cada franquicia
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Franquicia AS
@@ -121,9 +123,12 @@ FROM Franquicia f
 JOIN Reserva r ON f.ID_Franquicia = r.ID_Franquicia
 JOIN Cliente c ON r.ID_Cliente = c.ID_Cliente
 JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
-JOIN Horario h ON r.ID_Horario = h.ID_Horario;
+JOIN Horario h ON r.ID_Horario = h.ID_Horario
+order by franquicia;
 
-SELECT * FROM APP_GYMBRO.Vista_Reservas_Franquicia;
+SELECT 
+*
+FROM Vista_Reservas_Franquicia;
 
 La vista Vista_Reservas_Franquicia utiliza las siguientes tablas:
 
