@@ -16,7 +16,7 @@ CREATE TABLE Cliente (
     Telefono VARCHAR(50) NOT NULL
 );
 
-INSERT INTO Cliente (Nombre, Nacimiento, Edad, Email, Telefono) VALUES
+INSERT INTO app_gymbro.Cliente (Nombre, Nacimiento, Edad, Email, Telefono) VALUES
 ('Juan Perez', '1985-04-23', 39, 'juan.perez@example.com', '555-1234'),
 ('Maria Lopez', '1990-08-15', 34, 'maria.lopez@example.com', '555-5678'),
 ('Carlos Gomez', '1978-11-02', 45, 'carlos.gomez@example.com', '555-8765'),
@@ -64,7 +64,7 @@ CREATE TABLE Franquicia (
     PRIMARY	KEY (ID_Franquicia)
 );
 
-INSERT INTO Franquicia (Nombre, Direccion, Email, Telefonos) VALUES
+INSERT INTO app_gymbro.Franquicia (Nombre, Direccion, Email, Telefonos) VALUES
 ('Gymbro Central', 'Calle Principal 123', 'central@gymbro.com', '555-1000'),
 ('Gymbro Norte', 'Avenida Norte 456', 'norte@gymbro.com', '555-2000'),
 ('Gymbro Sur', 'Calle Sur 789', 'sur@gymbro.com', '555-3000'),
@@ -87,7 +87,7 @@ CREATE TABLE Empleados (
     FOREIGN KEY (ID_Franquicia) REFERENCES franquicia(ID_Franquicia)
 );
 
-INSERT INTO Empleados (ID_Franquicia, Nombre, Telefono, Email, Descripcion) VALUES
+INSERT INTO app_gymbro.Empleados (ID_Franquicia, Nombre, Telefono, Email, Descripcion) VALUES
 (1, 'Carlos Perez', '555-1111', 'carlos.perez@gymbro.com', 'Instructor de Yoga'),
 (2, 'Ana Lopez', '555-2222', 'ana.lopez@gymbro.com', 'Entrenadora de Pilates'),
 (3, 'Luis Gomez', '555-3333', 'luis.gomez@gymbro.com', 'Entrenador Personal'),
@@ -117,7 +117,7 @@ CREATE TABLE TipoReserva (
     Cancelacion datetime
 );
 
-INSERT INTO TipoReserva (Tipo, Descripcion, Disponible, Cancelacion) VALUES
+INSERT INTO app_gymbro.TipoReserva (Tipo, Descripcion, Disponible, Cancelacion) VALUES
 ('Indoor', 'Reservas para actividades en espacios interiores', TRUE, '2024-07-30 12:00:00'),
 ('Aire Libre', 'Reservas para actividades al aire libre', TRUE, '2024-07-30 12:00:00'),
 ('Pileta', 'Reservas para actividades en la piscina', TRUE, '2024-07-30 12:00:00'),
@@ -132,7 +132,7 @@ CREATE TABLE TipoClase (
     Cancelacion datetime
 );
 
-INSERT INTO TipoClase (Tipo, Descripcion, Disponible, Cancelacion) VALUES
+INSERT INTO app_gymbro.TipoClase (Tipo, Descripcion, Disponible, Cancelacion) VALUES
 ('Funcional', 'Clase de entrenamiento funcional', TRUE, '2024-07-30 12:00:00'),
 ('Yoga', 'Clase de yoga', TRUE, '2024-07-30 12:00:00'),
 ('Musculación', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
@@ -157,7 +157,8 @@ CREATE TABLE Horario (
 );
 
 -- Horarios para las clases y reservas
-INSERT INTO Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
+
+INSERT INTO app_gymbro.Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
 -- Clase de Funcional
 (1, 1, '07:00-08:00', 'Clase de entrenamiento funcional', TRUE, '2024-07-30 12:00:00'),
 -- Clase de Yoga
@@ -183,13 +184,12 @@ INSERT INTO Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponi
 -- Clase de Aeróbic
 (5, 2, '20:45-21:45', 'Clase de aeróbic', TRUE, '2024-07-30 12:00:00'),
 -- Clase de Crossfit
-(6, 2, '22:00-23:00', 'Clase de crossfit', TRUE, '2024-07-30 12:00:00'),
--- Clase de Musculación (añadida para mayor variedad)
-(3, 1, '08:00-09:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00');
+(6, 2, '22:00-23:00', 'Clase de crossfit', TRUE, '2024-07-30 12:00:00');
 
 -- Horarios para clases de musculación
-INSERT INTO Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
--- Clase de Musculación
+
+INSERT INTO app_gymbro.Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
+(3, 1, '08:00-09:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
 (3, 1, '07:00-08:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
 (3, 1, '08:15-09:15', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
 (3, 1, '09:30-10:30', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
@@ -205,6 +205,7 @@ INSERT INTO Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponi
 (3, 1, '22:00-23:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00');
 
 -- Tabla de Reserva - Almacena información sobre la reserva (hora/dia/tipo/franquicia)
+
 CREATE TABLE Reserva (
     ID_Reserva INT AUTO_INCREMENT PRIMARY KEY,
     ID_Cliente INT NOT NULL,
@@ -213,7 +214,7 @@ CREATE TABLE Reserva (
     ID_TipoReserva INT NOT NULL,
     ID_TipoClase INT NOT NULL,
     ID_Horario INT NOT NULL,
-    Fecha DATE NOT NULL,
+    Fecha datetime NOT NULL default (current_date),
     Cancelacion datetime,
     FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente),
     FOREIGN KEY (ID_Empleados) REFERENCES Empleados(ID_Empleados),
@@ -224,27 +225,78 @@ CREATE TABLE Reserva (
 );
 
 -- Datos para la tabla Reserva
+
 INSERT INTO Reserva (ID_Cliente, ID_Empleados, ID_Franquicia, ID_TipoReserva, ID_TipoClase, ID_Horario, Fecha, Cancelacion) VALUES
-(1, 1, 1, 1, 1, 1, '2024-07-29 07:00:00', NULL),
-(2, 2, 1, 1, 2, 2, '2024-07-29 08:15:00', NULL),
-(3, 3, 2, 1, 3, 3, '2024-07-29 09:30:00', NULL),
-(4, 4, 2, 1, 4, 4, '2024-07-29 10:45:00', NULL),
-(5, 5, 3, 1, 5, 5, '2024-07-29 12:00:00', NULL),
-(6, 6, 3, 1, 6, 6, '2024-07-29 13:15:00', NULL),
-(7, 7, 4, 1, 7, 7, '2024-07-29 14:30:00', NULL),
-(8, 8, 4, 1, 8, 8, '2024-07-29 15:45:00', NULL),
-(9, 9, 5, 1, 9, 9, '2024-07-29 17:00:00', NULL),
-(10, 10, 5, 1, 1, 1, '2024-07-29 18:15:00', NULL),
-(11, 1, 1, 2, 2, 2, '2024-07-30 08:00:00', NULL),
-(12, 2, 2, 2, 3, 3, '2024-07-30 09:15:00', NULL),
-(13, 3, 3, 2, 4, 4, '2024-07-30 10:30:00', NULL),
-(14, 4, 4, 2, 5, 5, '2024-07-30 11:45:00', NULL),
-(15, 5, 5, 2, 6, 6, '2024-07-30 13:00:00', NULL),
-(16, 6, 1, 2, 7, 7, '2024-07-30 14:15:00', NULL),
-(17, 7, 2, 2, 8, 8, '2024-07-30 15:30:00', NULL),
-(18, 8, 3, 2, 9, 9, '2024-07-30 16:45:00', NULL),
-(19, 9, 4, 2, 1, 1, '2024-07-30 18:00:00', NULL),
-(20, 10, 5, 2, 2, 2, '2024-07-30 19:15:00', NULL);
+(1, 1, 1, 1, 1, 1, '2024-01-01 08:00:00', NULL),
+(2, 2, 2, 2, 2, 2, '2024-01-02 09:00:00', NULL),
+(3, 3, 3, 3, 3, 3, '2024-01-03 10:00:00', NULL),
+(4, 4, 4, 4, 4, 4, '2024-01-04 11:00:00', NULL),
+(5, 5, 5, 4, 5, 5, '2024-01-05 12:00:00', NULL),
+(6, 6, 1, 1, 1, 6, '2024-01-06 13:00:00', NULL),
+(7, 7, 2, 2, 2, 7, '2024-01-07 14:00:00', NULL),
+(8, 8, 3, 3, 3, 8, '2024-01-08 15:00:00', NULL),
+(9, 9, 4, 4, 4, 9, '2024-01-09 16:00:00', NULL),
+(10, 10, 4, 4, 5, 10, '2024-01-10 17:00:00', NULL),
+(11, 1, 1, 1, 1, 1, '2024-01-11 08:00:00', NULL),
+(12, 2, 2, 2, 2, 2, '2024-01-12 09:00:00', NULL),
+(13, 3, 3, 3, 3, 3, '2024-01-13 10:00:00', NULL),
+(14, 4, 4, 4, 4, 4, '2024-01-14 11:00:00', NULL),
+(15, 5, 5, 4, 5, 5, '2024-01-15 12:00:00', NULL),
+(16, 6, 1, 1, 1, 6, '2024-01-16 13:00:00', NULL),
+(17, 7, 2, 2, 2, 7, '2024-01-17 14:00:00', NULL),
+(18, 8, 3, 3, 3, 8, '2024-01-18 15:00:00', NULL),
+(19, 9, 4, 4, 4, 9, '2024-01-19 16:00:00', NULL),
+(20, 10, 5, 4, 5, 10, '2024-01-20 17:00:00', NULL),
+(21, 1, 1, 1, 1, 1, '2024-01-21 08:00:00', NULL),
+(22, 2, 2, 2, 2, 2, '2024-01-22 09:00:00', NULL),
+(23, 3, 3, 3, 3, 3, '2024-01-23 10:00:00', NULL),
+(25, 4, 4, 4, 4, 4, '2024-01-24 11:00:00', NULL),
+(21, 5, 5, 4, 5, 5, '2024-01-25 12:00:00', NULL),
+(22, 6, 1, 1, 1, 6, '2024-01-26 13:00:00', NULL),
+(27, 7, 2, 2, 2, 7, '2024-01-27 14:00:00', NULL),
+(25, 8, 3, 3, 3, 8, '2024-01-28 15:00:00', NULL),
+(24, 9, 4, 4, 4, 9, '2024-01-29 16:00:00', NULL),
+(11, 10, 5, 4, 5, 10, '2024-01-30 17:00:00', NULL),
+(11, 1, 1, 1, 1, 1, '2024-01-31 08:00:00', NULL),
+(12, 2, 2, 2, 2, 2, '2024-02-01 09:00:00', NULL),
+(13, 3, 3, 3, 3, 3, '2024-02-02 10:00:00', NULL),
+(14, 4, 4, 4, 4, 4, '2024-02-03 11:00:00', NULL),
+(15, 5, 5, 4, 5, 5, '2024-02-04 12:00:00', NULL),
+(16, 6, 1, 1, 1, 6, '2024-02-05 13:00:00', NULL),
+(27, 7, 2, 2, 2, 7, '2024-02-06 14:00:00', NULL),
+(28, 8, 3, 3, 3, 8, '2024-02-07 15:00:00', NULL),
+(32, 9, 4, 4, 4, 9, '2024-02-08 16:00:00', NULL),
+(20, 10, 5, 4, 5, 10, '2024-02-09 17:00:00', NULL),
+(1, 1, 1, 1, 1, 1, '2024-02-10 08:00:00', NULL),
+(2, 2, 2, 2, 2, 2, '2024-02-11 09:00:00', NULL),
+(3, 3, 3, 3, 3, 3, '2024-02-12 10:00:00', NULL),
+(4, 4, 4, 4, 4, 4, '2024-02-13 11:00:00', NULL),
+(5, 5, 5, 4, 5, 5, '2024-02-14 12:00:00', NULL),
+(6, 6, 1, 1, 1, 6, '2024-02-15 13:00:00', NULL),
+(7, 7, 2, 2, 2, 7, '2024-02-16 14:00:00', NULL),
+(8, 8, 3, 3, 3, 8, '2024-02-17 15:00:00', NULL),
+(9, 9, 4, 4, 4, 9, '2024-02-18 16:00:00', NULL),
+(5, 10, 5, 4, 5, 10, '2024-02-19 17:00:00', NULL),
+(17, 1, 1, 1, 1, 1, '2024-02-20 08:00:00', NULL),
+(25, 2, 2, 2, 2, 2, '2024-02-21 09:00:00', NULL),
+(12, 3, 3, 3, 3, 3, '2024-02-22 10:00:00', NULL),
+(17, 4, 4, 4, 4, 4, '2024-02-23 11:00:00', NULL),
+(16, 5, 5, 4, 5, 5, '2024-02-24 12:00:00', NULL),
+(15, 6, 1, 1, 1, 6, '2024-02-25 13:00:00', NULL),
+(23, 7, 2, 2, 2, 7, '2024-02-26 14:00:00', NULL),
+(30, 8, 3, 3, 3, 8, '2024-02-27 15:00:00', NULL),
+(31, 9, 4, 4, 4, 9, '2024-02-28 16:00:00', NULL),
+(32, 10, 5, 4, 5, 10, '2024-02-29 17:00:00', NULL),
+(31, 1, 1, 1, 1, 1, '2024-03-01 08:00:00', NULL),
+(26, 2, 2, 2, 2, 2, '2024-03-02 09:00:00', NULL),
+(23, 3, 3, 3, 3, 3, '2024-03-03 10:00:00', NULL),
+(12, 4, 4, 4, 4, 4, '2024-03-04 11:00:00', NULL),
+(32, 5, 5, 4, 5, 5, '2024-03-05 12:00:00', NULL),
+(23, 6, 1, 1, 1, 6, '2024-03-06 13:00:00', NULL),
+(7, 7, 2, 2, 2, 7, '2024-03-07 14:00:00', NULL),
+(6, 8, 3, 3, 3, 8, '2024-03-08 15:00:00', NULL),
+(5, 9, 4, 4, 4, 9, '2024-03-09 16:00:00', NULL),
+(24, 10, 5, 2, 5, 10, '2024-03-10 17:00:00', NULL);
 
 -- Vistas con subconsultas
 
@@ -266,7 +318,7 @@ LEFT JOIN Cliente c ON r.ID_Cliente = c.ID_Cliente
 LEFT JOIN Franquicia f ON r.ID_Franquicia = f.ID_Franquicia
 LEFT JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
 LEFT JOIN Horario h ON r.ID_Horario = h.ID_Horario
-ORDER BY c.Nombre
+ORDER BY Total_Reservas_Cliente desc, franquicia desc, CLIENTE DESC
 );
 
 SELECT 
@@ -297,7 +349,9 @@ FROM Cliente c
 JOIN Reserva r ON c.ID_Cliente = r.ID_Cliente
 JOIN Franquicia f ON r.ID_Franquicia = f.ID_Franquicia
 JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
-JOIN Horario h ON r.ID_Horario = h.ID_Horario);
+JOIN Horario h ON r.ID_Horario = h.ID_Horario
+ORDER BY Empleado_frecuente desc, franquicia desc
+);
 
 SELECT *
 FROM Vista_Reservas_Cliente;
@@ -319,7 +373,7 @@ order by f.nombre;
 SELECT *
 FROM Vista_Empleados_Franquicia;
 
--- Vista Reservas Franquicia: Obtener el tipo de clase más reservada en cada franquicia
+-- Vista Reservas Franquicia: clase más reservada en cada franquicia
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Franquicia AS
 SELECT 
     f.ID_Franquicia, 
@@ -342,6 +396,9 @@ FROM Franquicia f
 JOIN Reserva r ON f.ID_Franquicia = r.ID_Franquicia
 JOIN Cliente c ON r.ID_Cliente = c.ID_Cliente
 JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
-JOIN Horario h ON r.ID_Horario = h.ID_Horario;
+JOIN Horario h ON r.ID_Horario = h.ID_Horario
+order by franquicia;
 
-SELECT * FROM APP_GYMBRO.Vista_Reservas_Franquicia;
+SELECT 
+*
+FROM Vista_Reservas_Franquicia;
