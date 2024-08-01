@@ -176,3 +176,12 @@ INSERT INTO Reserva (ID_Cliente, ID_Empleados, ID_Franquicia, ID_TipoReserva, ID
 (19, 9, 4, 2, 1, 1, '2024-07-30 18:00:00', NULL),
 (20, 10, 5, 2, 2, 2, '2024-07-30 19:15:00', NULL);
 
+UPDATES DE DATOS EN TABLAS MEMBRESIA Y RESERVA
+
+UPDATE Cliente SET ID_Membresia = 1 WHERE ID_Cliente IN (1, 6, 11, 16, 21);
+UPDATE Cliente SET ID_Membresia = 2 WHERE ID_Cliente IN (2, 7, 12, 17, 22);
+UPDATE Cliente SET ID_Membresia = 3 WHERE ID_Cliente IN (3, 8, 13, 18, 23);
+
+UPDATE Reserva SET ID_Membresia = 1 WHERE ID_Reserva IN (1, 6, 11, 16, 21);
+UPDATE Reserva SET ID_Membresia = 2 WHERE ID_Reserva IN (2, 7, 12, 17, 22);
+UPDATE Reserva SET ID_Membresia = 3 WHERE ID_Reserva IN (3, 8, 13, 18, 23);
