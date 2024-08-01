@@ -101,6 +101,7 @@ Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
 -------------------------------------------------------------------------------------------------------------------------------
 
 -- Vista Reservas Franquicia: Obtener el tipo de clase más reservada en cada franquicia
+
 CREATE OR REPLACE VIEW APP_GYMBRO.Vista_Reservas_Franquicia AS
 SELECT 
     f.ID_Franquicia, 
