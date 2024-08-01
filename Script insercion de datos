@@ -74,6 +74,13 @@ INSERT INTO Empleados (ID_Franquicia, Nombre, Telefono, Email, Descripcion) VALU
 (8, 'Sandra Diaz', '555-9090', 'sandra.diaz@gymbro.com', 'Instructora de Zumba'),
 (9, 'Ricardo Morales', '555-0111', 'ricardo.morales@gymbro.com', 'Entrenador de Boxeo');
 
+-- TABLA DE MEMBRESIA
+
+INSERT INTO Membresia (Tipo, Descripcion, Precio) VALUES
+('Básica', 'Acceso limitado a las instalaciones del gimnasio, sin clases grupales.', 29.99),
+('Estándar', 'Acceso completo a las instalaciones del gimnasio y a todas las clases grupales.', 49.99),
+('Premium', 'Acceso completo a las instalaciones del gimnasio, todas las clases grupales, y sesiones ilimitadas con entrenadores personales.', 79.99);
+
 -- DATOS DE LA TABLA TIPO RESERVA
 
 INSERT INTO TipoReserva (Tipo, Descripcion, Disponible, Cancelacion) VALUES
