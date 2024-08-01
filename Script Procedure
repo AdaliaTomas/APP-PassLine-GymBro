@@ -22,3 +22,5 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL ObtenerReservasCliente(1);
