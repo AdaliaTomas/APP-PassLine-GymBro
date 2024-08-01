@@ -52,4 +52,5 @@ En resumen, esta base de datos proporciona una estructura para organizar y gesti
 
 
 
-![image](https://github.com/user-attachments/assets/03273b92-ff3a-4e26-8ead-95626ab1bc96)
+![image](https://github.com/user-attachments/assets/3fe07ffd-0107-4d2e-bc37-87572921f582)
+
