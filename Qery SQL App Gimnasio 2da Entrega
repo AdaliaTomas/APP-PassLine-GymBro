@@ -53,7 +53,6 @@
 	('Susana Castro', '1988-01-25', 36, 'susana.castro@example.com', '555-1248'),
 	('Laura Rodriguez', '1994-07-12', 29, 'laura.rodriguez@example.com', '555-1249');
 
-
 	-- Tabla de Franquicias - Almacena información sobre las distintas franquicias que hay de la cadena de gimnasio donde se realizan reservas
 	CREATE TABLE Franquicia (
 		ID_Franquicia INT AUTO_INCREMENT,
@@ -312,6 +311,23 @@ INSERT INTO Membresia (Tipo, Descripcion, Precio) VALUES
 	(6, 8, 3, 3, 3, 8, '2024-03-08 15:00:00', NULL),
 	(5, 9, 4, 4, 4, 9, '2024-03-09 16:00:00', NULL),
 	(24, 10, 5, 2, 5, 10, '2024-03-10 17:00:00', NULL);
+    
+    ALTER TABLE Cliente
+ADD COLUMN ID_Membresia INT,
+ADD FOREIGN KEY (ID_Membresia) REFERENCES Membresia(ID_Membresia);
+
+ALTER TABLE Reserva
+ADD COLUMN ID_Membresia INT,
+ADD FOREIGN KEY (ID_Membresia) REFERENCES Membresia(ID_Membresia);
+
+UPDATE Cliente SET ID_Membresia = 1 WHERE ID_Cliente IN (1, 6, 11, 16, 21);
+UPDATE Cliente SET ID_Membresia = 2 WHERE ID_Cliente IN (2, 7, 12, 17, 22);
+UPDATE Cliente SET ID_Membresia = 3 WHERE ID_Cliente IN (3, 8, 13, 18, 23);
+
+UPDATE Reserva SET ID_Membresia = 1 WHERE ID_Reserva IN (1, 6, 11, 16, 21);
+UPDATE Reserva SET ID_Membresia = 2 WHERE ID_Reserva IN (2, 7, 12, 17, 22);
+UPDATE Reserva SET ID_Membresia = 3 WHERE ID_Reserva IN (3, 8, 13, 18, 23);
+
 
 -- Vistas con subconsultas
 
@@ -442,3 +458,5 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL ObtenerReservasCliente(1);
