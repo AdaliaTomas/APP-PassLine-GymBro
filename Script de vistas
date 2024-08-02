@@ -54,13 +54,16 @@ SELECT
          WHERE r2.ID_Cliente = c.ID_Cliente 
          GROUP BY r2.ID_Empleados 
          ORDER BY COUNT(*) DESC 
-         LIMIT 1)) AS Empleado_Frecuente
+         LIMIT 1)) AS Empleado_Frecuente,
+    (SELECT COUNT(*) 
+     FROM Reserva r3 
+     WHERE r3.ID_Cliente = c.ID_Cliente) AS Cantidad_Reservas
 FROM Cliente c
 JOIN Reserva r ON c.ID_Cliente = r.ID_Cliente
 JOIN Franquicia f ON r.ID_Franquicia = f.ID_Franquicia
 JOIN TipoClase t ON r.ID_TipoClase = t.ID_TipoClase
 JOIN Horario h ON r.ID_Horario = h.ID_Horario
-ORDER BY Empleado_frecuente desc, franquicia desc
+ORDER BY Cantidad_Reservas desc ,Empleado_Frecuente DESC, Franquicia DESC
 );
 
 SELECT *
