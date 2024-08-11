@@ -141,3 +141,23 @@ Reserva: Contiene información sobre las reservas realizadas por los clientes.
 Cliente: Almacena información sobre los clientes que realizan las reservas.
 TipoClase: Contiene información sobre los tipos de clases disponibles en el gimnasio.
 Horario: Contiene información sobre los horarios disponibles para las clases y reservas.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE VIEW APP_GYMBRO.Ingresos_Totales_Franquicia AS
+SELECT f.Nombre AS Franquicia, SUM(hr.Costo) AS IngresosTotales
+FROM HechoReserva hr
+JOIN Franquicia f ON hr.ID_Franquicia = f.ID_Franquicia
+GROUP BY f.Nombre;
+
+SELECT 
+*
+FROM Ingresos_Totales_Franquicia;
+
+La vista Ingresos_Totales_Franquicia utiliza las siguientes tablas:
+
+Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Cliente: Almacena información sobre los clientes que realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clases disponibles en el gimnasio.
+Costos: Contiene información sobre los pagos realizados por los clientes para cada clases.
