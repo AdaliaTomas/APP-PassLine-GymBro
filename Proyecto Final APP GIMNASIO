@@ -115,11 +115,11 @@ CREATE TABLE Membresia (
     Precio DECIMAL(10, 2) NOT NULL
 );
 
--- Insertar datos en la tabla de Membresías
-INSERT INTO Membresia (Tipo, Descripcion, Precio) VALUES
-('Básica', 'Acceso limitado a las instalaciones del gimnasio, sin clases grupales.', 29.99),
-('Estándar', 'Acceso completo a las instalaciones del gimnasio y a todas las clases grupales.', 49.99),
-('Premium', 'Acceso completo a las instalaciones del gimnasio, todas las clases grupales, y sesiones ilimitadas con entrenadores personales.', 79.99);
+	-- Insertar datos en la tabla de Membresías
+	INSERT INTO Membresia (Tipo, Descripcion, Precio) VALUES
+	('Básica', 'Acceso limitado a las instalaciones del gimnasio, sin clases grupales.', 29.99),
+	('Estándar', 'Acceso completo a las instalaciones del gimnasio y a todas las clases grupales.', 49.99),
+	('Premium', 'Acceso completo a las instalaciones del gimnasio, todas las clases grupales, y sesiones ilimitadas con entrenadores personales.', 79.99);
 
 
 	-- Tabla de Tipo de reservas - Contiene información sobre que tipo de espacio para su clase reserva la persona (Indoor, Aire libre, Pileta, Box pilates)
@@ -424,6 +424,29 @@ INSERT INTO HechoReserva (ID_Cliente, ID_Franquicia, ID_Empleados, ID_TipoReserv
 (3, 3, 4, 1, 4, 1, 1, '2024-08-27', 65.00, TRUE),
 (4, 4, 5, 2, 5, 2, 2, '2024-08-27', 65.00, TRUE);
 
+DROP TABLE IF EXISTS APP_GYMBRO.Audit_Membresia;
+
+CREATE TABLE Audit_Membresia (
+    ID_Audit INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Membresia INT,
+    Tipo VARCHAR(100),
+    Descripcion TEXT,
+    Precio DECIMAL(10, 2),
+    FechaCambio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Accion VARCHAR(50),
+    FOREIGN KEY (ID_Membresia) REFERENCES Membresia(ID_Membresia)
+);
+
+-- Insertar datos en la tabla de Audit_Membresia--
+
+INSERT INTO Audit_Membresia (ID_Membresia, Tipo, Descripcion, Precio, Accion) VALUES
+(1, 'Básica', 'Membresía básica con acceso a todas las áreas comunes', 29.99, 'Creación'),
+(2, 'Estándar', 'Membresía estándar con acceso completo a las instalaciones y clases grupales', 49.99, 'Creación'),
+(3, 'Premium', 'Membresía premium con acceso completo y sesiones ilimitadas con entrenadores personales', 79.99, 'Creación'),
+(1, 'Básica', 'Actualización de precios', 34.99, 'Actualización'),
+(2, 'Estándar', 'Actualización de descripción', 54.99, 'Actualización'),
+(3, 'Premium', 'Cambio en la descripción', 74.99, 'Actualización');
+
 -- Vistas con subconsultas
 
 CREATE OR REPLACE VIEW APP_GYMBRO.Ingresos_Totales_Franquicia AS
@@ -623,7 +646,6 @@ END //
 
 DELIMITER ;
 
-
 -- Creación del trigger que limita una reserva por cliente por día--
 
 DELIMITER $$
@@ -646,5 +668,31 @@ BEGIN
         SET MESSAGE_TEXT = 'Solo se permite una reserva por día';
     END IF;
 END$$
+
+DELIMITER ;
+
+-- Se activa después de cada actualización en la tabla Membresia y registra los datos antiguos antes del cambio, indicando que la acción fue una actualización --
+
+DELIMITER //
+
+CREATE TRIGGER after_membresia_update
+AFTER UPDATE ON Membresia
+FOR EACH ROW
+BEGIN
+    INSERT INTO Audit_Membresia (ID_Membresia, Tipo, Descripcion, Precio, Accion)
+    VALUES (OLD.ID_Membresia, OLD.Tipo, OLD.Descripcion, OLD.Precio, 'UPDATE');
+END;
+//
+
+-- Se activa después de cada inserción en la tabla Membresia y registra los nuevos datos insertados, indicando que la acción fue una inserción --
+
+CREATE TRIGGER after_membresia_insert
+AFTER INSERT ON Membresia
+FOR EACH ROW
+BEGIN
+    INSERT INTO Audit_Membresia (ID_Membresia, Tipo, Descripcion, Precio, Accion)
+    VALUES (NEW.ID_Membresia, NEW.Tipo, NEW.Descripcion, NEW.Precio, 'INSERT');
+END;
+//
 
 DELIMITER ;
