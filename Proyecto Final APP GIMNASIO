@@ -684,6 +684,10 @@ BEGIN
 END;
 //
 
+-- creacion de usuarios para DB App_Gymbro --
+
+CREATE USER 'Empleado1'@'localhost' IDENTIFIED BY '1234' ;
+
 -- Se activa después de cada inserción en la tabla Membresia y registra los nuevos datos insertados, indicando que la acción fue una inserción --
 
 CREATE TRIGGER after_membresia_insert
@@ -696,3 +700,70 @@ END;
 //
 
 DELIMITER ;
+
+-- creacion de usuarios para DB App_Gymbro --
+
+USE APP_GYMBRO;
+
+-- Creacion de los usuarios para los duenos del gimnasio --
+
+CREATE USER 'P.Juan'@'%' IDENTIFIED BY 'Perezjuan-01';
+CREATE USER 'A.Marcos'@'%' IDENTIFIED BY 'Altamiranomarcos-02';
+
+-- Otorga todos los permisos en la base de datos APP_GYMBRO a los usuarios --
+
+GRANT ALL PRIVILEGES ON APP_GYMBRO.* TO 'P.Juan'@'%';
+GRANT ALL PRIVILEGES ON APP_GYMBRO.* TO 'A.Marcos'@'%';
+
+-- Asegurarse de que los privilegios se carguen --
+FLUSH PRIVILEGES;
+
+-- creacion de usuarios para cada empleado --
+
+CREATE USER 'P.Carlos'@'localhost' IDENTIFIED BY 'Pcarlos1';
+CREATE USER 'L.Ana'@'localhost' IDENTIFIED BY 'Lana2';
+CREATE USER 'G.Luis'@'localhost' IDENTIFIED BY 'Gluis3';
+CREATE USER 'M.Sofia'@'localhost' IDENTIFIED BY 'Msofia4';
+CREATE USER 'S.Pedro'@'localhost' IDENTIFIED BY 'Spedro5';
+CREATE USER 'H.Laura'@'localhost' IDENTIFIED BY 'Hlaura6';
+CREATE USER 'T.jorge'@'localhost' IDENTIFIED BY 'Tjorge7';
+CREATE USER 'R.Marta'@'localhost' IDENTIFIED BY 'Rmarta8';
+CREATE USER 'F.Jose'@'loclhost' IDENTIFIED BY 'Fjose9';
+CREATE USER 'G.Carla'@'localhost' IDENTIFIED BY 'Gcarla10';
+CREATE USER 'R.Miguel'@'localhost' IDENTIFIED BY 'Rmiguel11';
+CREATE USER 'M.Elena'@'localhost' IDENTIFIED BY 'Melena12';
+CREATE USER 'V.Daniel'@'localhost' IDENTIFIED BY 'Vdaniel13';
+CREATE USER 'C.Grabiela'@'localhost' IDENTIFIED BY 'Cgabriela14';
+CREATE USER 'R.Roberto'@'localhost' IDENTIFIED BY 'Rroberto15';
+CREATE USER 'O.Natalia'@'localhost' IDENTIFIED BY 'Onatalia16';
+CREATE USER 'H.Alberto'@'localhost' IDENTIFIED BY 'Halberto17';
+CREATE USER 'D.Sandra'@'localhost' IDENTIFIED BY 'Dsandra18';
+CREATE USER 'M.Ricardo'@'localhost' IDENTIFIED BY 'Mricardo19';
+
+-- Permisos de solo visualización--
+
+GRANT SELECT ON gym_database.* TO 'P.Carlos'@'localhost';
+GRANT SELECT ON gym_database.* TO 'M.Ricardo'@'localhost';
+GRANT SELECT ON gym_database.* TO 'D.Sandra'@'localhost';
+GRANT SELECT ON gym_database.* TO 'H.Alberto'@'localhost';
+GRANT SELECT ON gym_database.* TO 'O.Natalia'@'localhost';
+GRANT SELECT ON gym_database.* TO 'R.Roberto'@'localhost';
+GRANT SELECT ON gym_database.* TO 'C.Grabiela'@'localhost';
+GRANT SELECT ON gym_database.* TO 'V.Daniel'@'localhost';
+GRANT SELECT ON gym_database.* TO 'M.Elena'@'localhost';
+GRANT SELECT ON gym_database.* TO 'R.Miguel'@'localhost';
+GRANT SELECT ON gym_database.* TO 'G.Carla'@'localhost';
+GRANT SELECT ON gym_database.* TO 'F.Jose'@'loclhost';
+GRANT SELECT ON gym_database.* TO 'R.Marta'@'localhost';
+GRANT SELECT ON gym_database.* TO 'T.jorge'@'localhost';
+GRANT SELECT ON gym_database.* TO 'H.Laura'@'localhost';
+GRANT SELECT ON gym_database.* TO 'S.Pedro'@'localhost';
+GRANT SELECT ON gym_database.* TO 'M.Sofia'@'localhost';
+GRANT SELECT ON gym_database.* TO 'G.Luis'@'localhost' ;
+GRANT SELECT ON gym_database.* TO 'L.Ana'@'localhost';
+
+-- pruebas de borrar si existe y volver a crear usuarios--
+
+DROP USER IF EXISTS 'P.Carlos'@'localhost';
+DROP USER IF EXISTS 'P.Juan'@'%';
+
