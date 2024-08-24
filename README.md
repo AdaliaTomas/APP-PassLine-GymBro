@@ -1,4 +1,4 @@
-!!! QUEREMOS DARTE LA BIENVENIDA GYM BROTHERR !!!
+**!!! QUEREMOS DARTE LA BIENVENIDA GYM BROTHERR !!!**
 
 ¡Hola a todos!
 
@@ -12,14 +12,14 @@ Pero lo más importante, queremos que se sientan rodeados de amigos, en un ambie
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Entrega de proyecto final
-@Alumno -- Adalia Tomas
+**Entrega de proyecto final**
+@Alumno -- **Adalia Tomas**
 
-@Comision -- 51790
+@Comision -- **51790**
 
-@Tutor -- Ariel Annone
+@Tutor -- **Ariel Annone**
 
-@Docente -- Anderson Michel Torres
+@Docente -- ****Anderson Michel Torres**
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
