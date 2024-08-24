@@ -29,7 +29,7 @@ Problema:
 Nuestro equipo de desarrollo está trabajando en un sistema de gestión de reservas para un gimnasio llamado PassLine GymBro, y nos enfrentamos a la necesidad de diseñar una base de datos eficiente que pueda manejar todas las operaciones relacionadas con las reservas de manera óptima.
 
 Descripción del Problema:
-Gestión de Clientes y Empleados: Necesitamos una base de datos que nos permita registrar la información de los clientes que realizan reservas, así como de los empleados involucrados en el horario y tipo de clase que se reserva, profesores deportivos o coach de salon.
+Gestión de Clientes, Empleados y Clases a realizar: Necesitamos una base de datos que nos permita registrar la información de los clientes que realizan reservas para las distintos tipos de clases y disciplinas, así como los ingresos de los empleados involucrados en el horario y tipo de clase que se reserva, profesores deportivos o coach de salon.
 
 Gestión de Tipos de Reserva: Es importante poder clasificar las reservas según su tipo, ya sea una reserva estándar (horario de salon de maquinas), una reserva para eventos especiales (tipo de clase personalizada). Esto nos ayudará a organizar mejor el flujo de trabajo y adaptar nuestros servicios según las necesidades del cliente.
 
@@ -43,7 +43,19 @@ Diseñar e implementar una base de datos relacional que satisfaga todas las nece
 Descripción de la Base de Datos - Gestión de Reservas en Gimnasios
 Esta base de datos está diseñada para gestionar reservas en gimnasios, así como la información relacionada con clientes, empleados, tipos de reserva y franquicias mismas. A continuación se detallan los elementos principales de la base de datos:
 
-Tablas:
+TABLAS
+
+Tabla	Columna	Tipo De Datos
+Clientes	ID_Cliente 	INT AUTO_INCREMENT PRIMARY KEY
+	Nombre 	VARCHAR(50) NOT NULL
+	Nacimiento 	DATE NOT NULL
+	Edad 	INT NOT NULL
+	Email 	VARCHAR(100) NOT NULL UNIQUE
+	Telefono 	VARCHAR(50) NOT NULL
+ 
+![image](https://github.com/user-attachments/assets/b7f8d4cf-f718-4ff8-9ec8-12f689a14f75)
+
+
 CLIENTE:
 Almacena información sobre los clientes que realizan reservas.
 Atributos: IDCLIENTE, NOMBRE, FECHA DE NACIMIENTO, EDAD, EMAIL, TELEFONO.
