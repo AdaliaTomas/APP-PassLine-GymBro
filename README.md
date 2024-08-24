@@ -45,36 +45,80 @@ Esta base de datos está diseñada para gestionar reservas en gimnasios, así co
 
 TABLAS
 
-Tabla	Columna	Tipo De Datos
-Clientes	ID_Cliente 	INT AUTO_INCREMENT PRIMARY KEY
-	Nombre 	VARCHAR(50) NOT NULL
-	Nacimiento 	DATE NOT NULL
-	Edad 	INT NOT NULL
-	Email 	VARCHAR(100) NOT NULL UNIQUE
-	Telefono 	VARCHAR(50) NOT NULL
- 
+Tabla		Columna		Tipo De Datos
+Clientes	ID_Cliente	INT AUTO_INCREMENT PRIMARY KEY
+		Nombre 		VARCHAR(50) NOT NULL
+		Nacimiento	DATE NOT NULL
+		Edad 		INT NOT NULL
+		Email 		VARCHAR(100) NOT NULL UNIQUE
+		Telefono 	VARCHAR(50) NOT NULL
+
+ ![image](https://github.com/user-attachments/assets/d5949137-4ec2-4335-8d4a-740bb39ec04c)
+
 ![image](https://github.com/user-attachments/assets/b7f8d4cf-f718-4ff8-9ec8-12f689a14f75)
 
+Tabla		Columna		Tipo De Datos
+Franquicia	ID_Franquicia	INT AUTO_INCREMENT PRIMARY KEY
+		Nombre	 	VARCHAR(50) NOT NULL
+		Direccion	VARCHAR(100) NOT NULL
+		Email 		VARCHAR(100) NOT NULL UNIQUE
+		Telefonos 	VARCHAR(50) NOT NULL
 
-CLIENTE:
-Almacena información sobre los clientes que realizan reservas.
-Atributos: IDCLIENTE, NOMBRE, FECHA DE NACIMIENTO, EDAD, EMAIL, TELEFONO.
+ ![image](https://github.com/user-attachments/assets/0e942560-b6c6-4e9a-ac03-7c713104aa9c)
 
-FRANQUICIA:
-Almacena información sobre las franquicias disponibles.
-Atributos: IDFRANQUICIA, NOMBRE, DIRECCION, EMAIL,TELEFONO.
+![image](https://github.com/user-attachments/assets/f0950a51-ba5d-4e6c-87be-263a70f035ee)
 
-EMPLEADO:
-Contiene información sobre los empleados involucrados en el proceso de reservas.
-Atributos: IDEMPLEADO, NOMBRE, TELEFONO, EMAIL, DESCRIPCION, IDFRANQUICIA.
+Tabla		Columna		Tipo De Datos
+Empleados	ID_Empleados 	INT AUTO_INCREMENT PRIMARY KEY
+		ID_Franquicia 	INT
+		Nombre 		VARCHAR(100) NOT NULL
+		Telefono 	VARCHAR(20) NOT NULL,
+		Email 		VARCHAR(100) NOT NULL UNIQUE,
+		Descripcion 	TEXT,
+		FOREIGN KEY (ID_Franquicia) REFERENCES franquicia (ID_Franquicia)	
 
-TIPORESERVA:
-Define diferentes tipos de reserva para clasificarlas según tipo de clase, personalizada, deportiva, salon.
-Atributos: IDTIPORESERVA, TIPO, DESCRIPCION.
+![image](https://github.com/user-attachments/assets/bd655edd-aac3-40f1-82f1-34abc0824ce9)
 
-RESERVA:
-Registra las reservas realizadas por los clientes.
-Atributos: IDCLIENTE, IDFRANQUICIA, IDEMPLEADO, IDTIPORESERVA, IDRESERVA, FECHA.
+![image](https://github.com/user-attachments/assets/44745361-1eb8-44d1-8455-b9db5b7f28cd)
+
+Tabla		Columna		Tipo De Datos
+Tipo Reserva	ID_TipoReserva	INT AUTO_INCREMENT PRIMARY KEY
+		Tipo 		VARCHAR(100) NOT NULL
+		Descripcion 	TEXT,
+		Disponible 	boolean
+		Cancelacion 	datetime
+
+![image](https://github.com/user-attachments/assets/eb30206b-9f04-4400-8296-8ed217952837)
+
+![image](https://github.com/user-attachments/assets/7e03bcab-aef6-4477-bced-6346c330aa70)
+
+Tabla		Columna		Tipo De Datos
+Membresia	ID_Membresia 	INT AUTO_INCREMENT PRIMARY KEY
+	    	Tipo 		VARCHAR(100) NOT NULL
+	   	Descripcion 	TEXT
+	   	Precio 		DECIMAL(10, 2) NOT NULL
+
+![image](https://github.com/user-attachments/assets/34b7bd24-87a8-4503-a50e-86167c95a536)
+
+![image](https://github.com/user-attachments/assets/e73019ca-a17c-40b6-a216-10ef229aef48)
+
+Tabla		Columna		Tipo De Datos
+Tipo de Clase	ID_TipoClase 	INT AUTO_INCREMENT PRIMARY KEY
+		Tipo		VARCHAR(100) NOT NULL
+		Descripcion	TEXT
+		Disponible 	boolean
+		Cancelacion 	datetime
+
+![image](https://github.com/user-attachments/assets/313d0e65-cdca-40dc-ad5a-9d7f32e8d69a)
+
+![image](https://github.com/user-attachments/assets/a9bc1155-b7cb-41e0-95fa-93311ab6fe5b)
+
+
+
+
+
+
+
 
 Problemática Resuelta:
 Esta base de datos permite gestionar eficientemente el proceso de reserva en gimnasios, desde la información de los clientes y empleados hasta la disponibilidad de sector/clase y horarios. Algunos aspectos que aborda incluyen:
