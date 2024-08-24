@@ -115,6 +115,46 @@ Horario	ID_Horario 	INT AUTO_INCREMENT PRIMARY KEY
 
 ![image](https://github.com/user-attachments/assets/6734b480-8fab-4d0e-b562-83a64b45ef3d)
 
+Tabla	Columna		Tipo De Datos
+Reserva	ID_Reserva 	INT AUTO_INCREMENT PRIMARY KEY
+	ID_Cliente 	INT NOT NULL
+	ID_Empleados 	INT NOT NULL
+	ID_Franquicia 	INT NOT NULL
+	ID_TipoReserva 	INT NOT NULL
+	ID_TipoClase 	INT NOT NULL
+	ID_Horario	INT NOT NULL
+	Fecha datetime 	NOT NULL default (current_date)
+	Cancelacion 	datetime
+	FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente)	
+	FOREIGN KEY (ID_Empleados) REFERENCES Empleados(ID_Empleados)	
+	FOREIGN KEY (ID_Franquicia) REFERENCES Franquicia(ID_Franquicia)	
+	FOREIGN KEY (ID_TipoReserva) REFERENCES TipoReserva(ID_TipoReserv),	
+	FOREIGN KEY (ID_TipoClase) REFERENCES TipoClase(ID_TipoClase)	
+	FOREIGN KEY (ID_Horario) REFERENCES Horario(ID_Horario)	
+
+![image](https://github.com/user-attachments/assets/f7edd80c-27aa-4445-985f-502a922802a8)
+
+Tabla		Columna		Tipo De Datos		
+Reserva		ID_HechoReserva INT AUTO_INCREMENT PRIMARY KEY		
+	    	ID_Cliente 	INT NOT NULL,  -- Relación con la tabla Cliente		
+	    	ID_Franquicia 	INT NOT NULL, -- Relación con la tabla Franquicia		
+	    	ID_Empleados 	INT NOT NULL, -- Relación con la tabla Empleados		
+	    	ID_TipoReserva 	INT NOT NULL, -- Relación con la tabla TipoReserva		
+	    	ID_TipoClase 	INT NOT NULL, -- Relación con la tabla TipoClase		
+	    	ID_Horario 	INT NOT NULL, -- Relación con la tabla Horario		
+	    	ID_Membresia 	INT NOT NULL, -- Relación con la tabla Membresia		
+	    	Fecha 		DATETIME NOT NULL,  -- Fecha de la reserva		
+	    	Costo 		DECIMAL(10, 2) NOT NULL,  -- Costo de la reserva		
+	    	Asistio 	BOOLEAN NOT NULL DEFAULT FALSE, -- Indicador de si el cliente asistió o no a la clase		
+	    	FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente),			
+	    	FOREIGN KEY (ID_Franquicia) REFERENCES Franquicia(ID_Franquicia),			
+	    	FOREIGN KEY (ID_Empleados) REFERENCES Empleados(ID_Empleados),			
+	    	FOREIGN KEY (ID_TipoReserva) REFERENCES TipoReserva(ID_TipoReserva),			
+	    	FOREIGN KEY (ID_TipoClase) REFERENCES TipoClase(ID_TipoClase),			
+	    	FOREIGN KEY (ID_Horario) REFERENCES Horario(ID_Horario),			
+	    	FOREIGN KEY (ID_Membresia) REFERENCES Membresia(ID_Membresia)			
+
+![image](https://github.com/user-attachments/assets/5f81acce-afaa-4f15-abc7-2b09870ac6ed)
 
 
 
