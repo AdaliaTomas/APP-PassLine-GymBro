@@ -302,6 +302,16 @@ INSERT INTO HechoReserva (ID_Cliente, ID_Franquicia, ID_Empleados, ID_TipoReserv
 (9, 9, 10, 1, 5, 6, 3, '2024-08-25', 75.00, TRUE),
 (5, 10, 1, 2, 1, 7, 1, '2024-08-25', 80.00, TRUE),
 (1, 1, 2, 1, 2, 8, 2, '2024-08-26', 60.00, FALSE),
+
+-- Insertar datos en la tabla de Audit_Membresia--
+
+INSERT INTO Audit_Membresia (ID_Membresia, Tipo, Descripcion, Precio, Accion) VALUES
+(1, 'Básica', 'Membresía básica con acceso a todas las áreas comunes', 29.99, 'Creación'),
+(2, 'Estándar', 'Membresía estándar con acceso completo a las instalaciones y clases grupales', 49.99, 'Creación'),
+(3, 'Premium', 'Membresía premium con acceso completo y sesiones ilimitadas con entrenadores personales', 79.99, 'Creación'),
+(1, 'Básica', 'Actualización de precios', 34.99, 'Actualización'),
+(2, 'Estándar', 'Actualización de descripción', 54.99, 'Actualización'),
+(3, 'Premium', 'Cambio en la descripción', 74.99, 'Actualización');
 (2, 2, 3, 2, 3, 9, 3, '2024-08-26', 50.00, TRUE),
 (3, 3, 4, 1, 4, 1, 1, '2024-08-27', 65.00, TRUE),
 (4, 4, 5, 2, 5, 2, 2, '2024-08-27', 65.00, TRUE);
