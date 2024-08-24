@@ -569,7 +569,7 @@ SELECT
 *
 FROM Vista_Reservas_Franquicia;
 
--- PROCEDURE /  este procedimiento ObtenerReservasCliente permite recuperar toda la información relevante sobre las reservas realizadas por un cliente específico en la base de datos --
+-- PROCEDURE /  este procedimiento ObtenerReservasCliente permite recuperar toda la información relevante sobre las reservas realizadas por un cliente específico en la base de datos, el cual se utilizara para la fidelizacion de clientes, poder detectar este patron y detectar mas clientes como tales --
 
 DELIMITER //
 CREATE PROCEDURE ObtenerReservasCliente (IN ID_Cliente INT)
@@ -614,7 +614,7 @@ BEGIN
     -- Consulta para encontrar el cliente con la mayor cantidad de reservas
     SELECT cliente.Nombre
     INTO clienteNombre
-    FROM cliente
+    FROM cliente c
     JOIN (
         SELECT ID_Cliente
         FROM reserva
@@ -705,15 +705,17 @@ DELIMITER ;
 
 USE APP_GYMBRO;
 
--- Creacion de los usuarios para los duenos del gimnasio --
+-- Creacion de los usuarios para los duenos y un usuario quien va a ser el encargado de mantener y actualizar la base de datos del gimnasio --
 
 CREATE USER 'P.Juan'@'%' IDENTIFIED BY 'Perezjuan-01';
 CREATE USER 'A.Marcos'@'%' IDENTIFIED BY 'Altamiranomarcos-02';
+CREATE USER 'UserMantenimiento'@'%' IDENTIFIED BY 'UserMantenimiento-01';
 
 -- Otorga todos los permisos en la base de datos APP_GYMBRO a los usuarios --
 
 GRANT ALL PRIVILEGES ON APP_GYMBRO.* TO 'P.Juan'@'%';
 GRANT ALL PRIVILEGES ON APP_GYMBRO.* TO 'A.Marcos'@'%';
+GRANT ALL PRIVILEGES ON APP_GYMBRO.* TO 'UserMantenimiento'@'%';
 
 -- Asegurarse de que los privilegios se carguen --
 FLUSH PRIVILEGES;
@@ -742,28 +744,27 @@ CREATE USER 'M.Ricardo'@'localhost' IDENTIFIED BY 'Mricardo19';
 
 -- Permisos de solo visualización--
 
-GRANT SELECT ON gym_database.* TO 'P.Carlos'@'localhost';
-GRANT SELECT ON gym_database.* TO 'M.Ricardo'@'localhost';
-GRANT SELECT ON gym_database.* TO 'D.Sandra'@'localhost';
-GRANT SELECT ON gym_database.* TO 'H.Alberto'@'localhost';
-GRANT SELECT ON gym_database.* TO 'O.Natalia'@'localhost';
-GRANT SELECT ON gym_database.* TO 'R.Roberto'@'localhost';
-GRANT SELECT ON gym_database.* TO 'C.Grabiela'@'localhost';
-GRANT SELECT ON gym_database.* TO 'V.Daniel'@'localhost';
-GRANT SELECT ON gym_database.* TO 'M.Elena'@'localhost';
-GRANT SELECT ON gym_database.* TO 'R.Miguel'@'localhost';
-GRANT SELECT ON gym_database.* TO 'G.Carla'@'localhost';
-GRANT SELECT ON gym_database.* TO 'F.Jose'@'loclhost';
-GRANT SELECT ON gym_database.* TO 'R.Marta'@'localhost';
-GRANT SELECT ON gym_database.* TO 'T.jorge'@'localhost';
-GRANT SELECT ON gym_database.* TO 'H.Laura'@'localhost';
-GRANT SELECT ON gym_database.* TO 'S.Pedro'@'localhost';
-GRANT SELECT ON gym_database.* TO 'M.Sofia'@'localhost';
-GRANT SELECT ON gym_database.* TO 'G.Luis'@'localhost' ;
-GRANT SELECT ON gym_database.* TO 'L.Ana'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'P.Carlos'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'M.Ricardo'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'D.Sandra'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'H.Alberto'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'O.Natalia'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'R.Roberto'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'C.Grabiela'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'V.Daniel'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'M.Elena'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'R.Miguel'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'G.Carla'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'F.Jose'@'loclhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'R.Marta'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'T.jorge'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'H.Laura'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'S.Pedro'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'M.Sofia'@'localhost';
+GRANT SELECT ON APP_GYMBRO.* TO 'G.Luis'@'localhost' ;
+GRANT SELECT ON APP_GYMBRO.* TO 'L.Ana'@'localhost';
 
 -- pruebas de borrar si existe y volver a crear usuarios--
 
 DROP USER IF EXISTS 'P.Carlos'@'localhost';
 DROP USER IF EXISTS 'P.Juan'@'%';
-
