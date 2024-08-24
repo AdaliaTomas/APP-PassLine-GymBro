@@ -1,4 +1,29 @@
-# AppGimnasioPassLinesGymBro - Adalia
+!!! QUEREMOS DARTE LA BIENVENIDA GYM BROTHERR !!!
+
+¡Hola a todos!
+
+Es un honor darles la bienvenida a este nuevo y emocionante proyecto de nuestro gimnasio. Aquí no solo queremos que entrenen y se sientan a gusto y seguros con sigo mismo, sino que también se sientan como en casa. Este es un espacio donde estaremos a disposicon para poder desarrollar buenos hábitos, desde lo fisico, con entrenamientos y cuidados del cuerpo como masajes relajantes, y terapias alternativas musculares, sino que tambien apoyamos a mejorar su salud alimenticia y disfrutar de entrenamientos que los desafíen y motiven.
+
+Pero lo más importante, queremos que se sientan rodeados de amigos, en un ambiente cálido y acogedor. Este gimnasio es más que un lugar para entrenar; es una comunidad donde cada uno de ustedes puede crecer y alcanzar sus objetivos personales, siempre con el apoyo de quienes los rodean.
+
+¡Bienvenidos a su nuevo hogar de bienestar y amistad! Estamos emocionados de compartir este viaje con ustedes.
+
+![image](https://github.com/user-attachments/assets/7aa4f9fd-a81d-45ca-9caa-5c32d716b292)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Entrega de proyecto final
+@Alumno -- Adalia Tomas
+
+@Comision -- 51790
+
+@Tutor -- Ariel Annone
+
+@Docente -- Anderson Michel Torres
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# App Gimnasio PassLines GymBro
 
 Problema:
 Nuestro equipo de desarrollo está trabajando en un sistema de gestión de reservas para un gimnasio llamado PassLine GymBro, y nos enfrentamos a la necesidad de diseñar una base de datos eficiente que pueda manejar todas las operaciones relacionadas con las reservas de manera óptima.
@@ -48,9 +73,4 @@ Gestión de la disponibilidad de clases, horarios y sucursal en cada gimnasio.
 Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, franquicia, empleado y tipo de reserva.
 En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en gimnasios, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar las operaciones del gimnasio. */
 
-![image](https://github.com/AdaliaTomas/Futbol5-Adalia/assets/174365713/fe37d833-7b5c-4072-95e6-8379a38f05ff)
-
-
-
-![image](https://github.com/user-attachments/assets/3fe07ffd-0107-4d2e-bc37-87572921f582)
-
+![image](https://github.com/user-attachments/assets/5c73027b-7851-4e28-9953-e1eba47bae7c)
