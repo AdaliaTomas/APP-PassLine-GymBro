@@ -13,6 +13,7 @@ Pero lo más importante, queremos que se sientan rodeados de amigos, en un ambie
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Entrega de proyecto final**
+
 @Alumno -- **Adalia Tomas**
 
 @Comision -- **51790**
@@ -263,10 +264,30 @@ Nombres de Tablas y Campos: Reserva y Cancelacion.
 
 **TIGGERS:**
 
+-- Cada vez que se inserta un nuevo registro en la tabla reserva, este TRIGGER se activará y actualizará automáticamente la cantidad de reservas del cliente correspondiente --
+
+CREATE TRIGGER AfterInsertReserva
+AFTER INSERT ON reserva
+Actualiza la cantidad de reservas del cliente
 
 
+-- Creación del trigger que limita una reserva por cliente por día --
+
+CREATE TRIGGER UnicaReservaPorDia
+BEFORE INSERT ON Reserva
+Verifica si ya existe una reserva para el mismo cliente en el mismo día, si ya existe una reserva, levanta un error y no permite la inserción
 
 
+-- Se activa después de cada actualización en la tabla Membresia y registra los datos antiguos antes del cambio, indicando que la acción fue una actualización --
+
+CREATE TRIGGER after_membresia_update
+AFTER UPDATE ON Membresia
+
+
+-- Se activa después de cada inserción en la tabla Membresia y registra los nuevos datos insertados, indicando que la acción fue una inserción --
+
+CREATE TRIGGER after_membresia_insert
+AFTER INSERT ON Membresia
 
 
 
