@@ -55,7 +55,6 @@ Clientes	ID_Cliente	INT AUTO_INCREMENT PRIMARY KEY
 
  ![image](https://github.com/user-attachments/assets/d5949137-4ec2-4335-8d4a-740bb39ec04c)
 
-![image](https://github.com/user-attachments/assets/b7f8d4cf-f718-4ff8-9ec8-12f689a14f75)
 
 Tabla		Columna		Tipo De Datos
 Franquicia	ID_Franquicia	INT AUTO_INCREMENT PRIMARY KEY
@@ -63,8 +62,6 @@ Franquicia	ID_Franquicia	INT AUTO_INCREMENT PRIMARY KEY
 		Direccion	VARCHAR(100) NOT NULL
 		Email 		VARCHAR(100) NOT NULL UNIQUE
 		Telefonos 	VARCHAR(50) NOT NULL
-
- ![image](https://github.com/user-attachments/assets/0e942560-b6c6-4e9a-ac03-7c713104aa9c)
 
 ![image](https://github.com/user-attachments/assets/f0950a51-ba5d-4e6c-87be-263a70f035ee)
 
@@ -77,8 +74,6 @@ Empleados	ID_Empleados 	INT AUTO_INCREMENT PRIMARY KEY
 		Descripcion 	TEXT,
 		FOREIGN KEY (ID_Franquicia) REFERENCES franquicia (ID_Franquicia)	
 
-![image](https://github.com/user-attachments/assets/bd655edd-aac3-40f1-82f1-34abc0824ce9)
-
 ![image](https://github.com/user-attachments/assets/44745361-1eb8-44d1-8455-b9db5b7f28cd)
 
 Tabla		Columna		Tipo De Datos
@@ -88,8 +83,6 @@ Tipo Reserva	ID_TipoReserva	INT AUTO_INCREMENT PRIMARY KEY
 		Disponible 	boolean
 		Cancelacion 	datetime
 
-![image](https://github.com/user-attachments/assets/eb30206b-9f04-4400-8296-8ed217952837)
-
 ![image](https://github.com/user-attachments/assets/7e03bcab-aef6-4477-bced-6346c330aa70)
 
 Tabla		Columna		Tipo De Datos
@@ -97,8 +90,6 @@ Membresia	ID_Membresia 	INT AUTO_INCREMENT PRIMARY KEY
 	    	Tipo 		VARCHAR(100) NOT NULL
 	   	Descripcion 	TEXT
 	   	Precio 		DECIMAL(10, 2) NOT NULL
-
-![image](https://github.com/user-attachments/assets/34b7bd24-87a8-4503-a50e-86167c95a536)
 
 ![image](https://github.com/user-attachments/assets/e73019ca-a17c-40b6-a216-10ef229aef48)
 
@@ -109,10 +100,20 @@ Tipo de Clase	ID_TipoClase 	INT AUTO_INCREMENT PRIMARY KEY
 		Disponible 	boolean
 		Cancelacion 	datetime
 
-![image](https://github.com/user-attachments/assets/313d0e65-cdca-40dc-ad5a-9d7f32e8d69a)
-
 ![image](https://github.com/user-attachments/assets/a9bc1155-b7cb-41e0-95fa-93311ab6fe5b)
 
+Tabla	Columna	Tipo De Datos
+Horario	ID_Horario 	INT AUTO_INCREMENT PRIMARY KEY
+	ID_TipoClase 	INT NOT NULL
+	ID_TipoReserva 	INT NOT NULL
+	Horario 	VARCHAR(100) NOT NULL
+	Descripcion 	TEXT,
+	Disponible 	boolean default ('Si o No')
+	Cancelacion 	DATETIME DEFAULT (current_timestamp)
+	FOREIGN KEY (ID_TipoClase) references TipoClase(ID_TipoClase)	
+	FOREIGN KEY (ID_TipoReserva) references TipoReserva(ID_TipoReserva)	
+
+![image](https://github.com/user-attachments/assets/6734b480-8fab-4d0e-b562-83a64b45ef3d)
 
 
 
