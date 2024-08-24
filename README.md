@@ -43,6 +43,7 @@ Diseñar e implementar una base de datos relacional que satisfaga todas las nece
 Descripción de la Base de Datos - Gestión de Reservas en Gimnasios
 Esta base de datos está diseñada para gestionar reservas en gimnasios, así como la información relacionada con clientes, empleados, tipos de reserva y franquicias mismas. A continuación se detallan los elementos principales de la base de datos:
 
+
 **TABLAS:**
 
 Tabla		Columna		Tipo De Datos
@@ -169,6 +170,7 @@ Reserva	 	ID_Audit 	INT AUTO_INCREMENT PRIMARY KEY
 ![image](https://github.com/user-attachments/assets/b7aa68b5-419b-4d05-ba22-90e8b4226fb5)
 
 
+
 **VISTAS:**
 
 -- Vista Reservas: Contar el número de reservas por cliente --
@@ -242,6 +244,7 @@ TipoClase: Contiene información sobre los tipos de clases disponibles en el gim
 Costos: Contiene información sobre los pagos realizados por los clientes para cada clases.
 
 
+
 **FUNCIONES:**
 
 -- La función ClienteConMayorReservas que has mostrado está diseñada para encontrar el nombre del cliente con la mayor cantidad de reservas en una base de datos --
@@ -258,7 +261,7 @@ CREATE FUNCTION contar_reservas_canceladas()
 
 Nombres de Tablas y Campos: Reserva y Cancelacion.
 
-
+**TIGGERS:**
 
 
 
