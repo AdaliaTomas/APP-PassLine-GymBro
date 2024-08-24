@@ -144,6 +144,8 @@ Horario: Contiene información sobre los horarios disponibles para las clases y 
 
 -------------------------------------------------------------------------------------------------------------------------------
 
+-- esta vista te proporcionará una lista con los nombres de las franquicias y sus respectivos ingresos totales calculados a partir de las reservas realizadas en cada una
+
 CREATE OR REPLACE VIEW APP_GYMBRO.Ingresos_Totales_Franquicia AS
 SELECT f.Nombre AS Franquicia, SUM(hr.Costo) AS IngresosTotales
 FROM HechoReserva hr
