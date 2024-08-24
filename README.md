@@ -43,7 +43,7 @@ Diseñar e implementar una base de datos relacional que satisfaga todas las nece
 Descripción de la Base de Datos - Gestión de Reservas en Gimnasios
 Esta base de datos está diseñada para gestionar reservas en gimnasios, así como la información relacionada con clientes, empleados, tipos de reserva y franquicias mismas. A continuación se detallan los elementos principales de la base de datos:
 
-TABLAS
+**TABLAS:**
 
 Tabla		Columna		Tipo De Datos
 Clientes	ID_Cliente	INT AUTO_INCREMENT PRIMARY KEY
@@ -155,6 +155,113 @@ Reserva		ID_HechoReserva INT AUTO_INCREMENT PRIMARY KEY
 	    	FOREIGN KEY (ID_Membresia) REFERENCES Membresia(ID_Membresia)			
 
 ![image](https://github.com/user-attachments/assets/5f81acce-afaa-4f15-abc7-2b09870ac6ed)
+
+Tabla		Columna	Tipo De Datos
+Reserva	 	ID_Audit 	INT AUTO_INCREMENT PRIMARY KEY
+	    	ID_Membresia 	INT
+	    	Tipo 		VARCHAR(100)
+	    	Descripcion 	TEXT,
+	    	Precio 		DECIMAL(10, 2)
+	    	FechaCambio 	DATETIME DEFAULT CURRENT_TIMESTAMP
+	   	Accion 		VARCHAR(50)
+	    	FOREIGN KEY (ID_Membresia) REFERENCES Membresia(ID_Membresia)	
+
+![image](https://github.com/user-attachments/assets/b7aa68b5-419b-4d05-ba22-90e8b4226fb5)
+
+
+**VISTAS:**
+
+-- Vista Reservas: Contar el número de reservas por cliente --
+
+SELECT 
+*
+FROM vista_reservas;
+
+La vista Vista_Reservas utiliza las siguientes tablas:
+
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Cliente: Contiene información sobre los clientes del gimnasio.
+Franquicia: Contiene información sobre las franquicias donde se realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clase disponibles.
+Horario: Contiene información sobre los horarios de las clases.
+
+
+-- VistaReservasCliente: Obtener el nombre del empleado que realizó la mayor cantidad de reservas para cada cliente --
+
+SELECT *
+FROM Vista_Reservas_Cliente;
+
+La vista Vista_Reservas_Cliente utiliza las siguientes tablas:
+
+Cliente: Contiene información sobre los clientes del gimnasio.
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Franquicia: Contiene información sobre las franquicias donde se realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clase disponibles.
+Horario: Contiene información sobre los horarios de las clases.
+
+
+-- Esta vista muestra información sobre los empleados y la franquicia en la que trabajan, esta ordenado por cada franquicia --
+
+SELECT *
+FROM Vista_Empleados_Franquicia;
+
+La vista Vista_Empleados_Franquicia utiliza las siguientes tablas:
+
+Empleados: Contiene información sobre los empleados que trabajan en las franquicias.
+Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
+
+
+
+-- Vista Reservas Franquicia: Obtener el tipo de clase más reservada en cada franquicia --
+
+SELECT 
+*
+FROM Vista_Reservas_Franquicia;
+
+La vista Vista_Reservas_Franquicia utiliza las siguientes tablas:
+
+Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Cliente: Almacena información sobre los clientes que realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clases disponibles en el gimnasio.
+Horario: Contiene información sobre los horarios disponibles para las clases y reservas.
+
+
+-- esta vista te proporcionará una lista con los nombres de las franquicias y sus respectivos ingresos totales calculados a partir de las reservas realizadas en cada una --
+
+SELECT 
+*
+FROM Ingresos_Totales_Franquicia;
+
+La vista Ingresos_Totales_Franquicia utiliza las siguientes tablas:
+
+Franquicia: Contiene información sobre las diferentes franquicias del gimnasio.
+Reserva: Contiene información sobre las reservas realizadas por los clientes.
+Cliente: Almacena información sobre los clientes que realizan las reservas.
+TipoClase: Contiene información sobre los tipos de clases disponibles en el gimnasio.
+Costos: Contiene información sobre los pagos realizados por los clientes para cada clases.
+
+
+**FUNCIONES:**
+
+-- La función ClienteConMayorReservas que has mostrado está diseñada para encontrar el nombre del cliente con la mayor cantidad de reservas en una base de datos --
+
+DROP FUNCTION IF EXISTS APP_GYMBRO.ClienteConMayorReservas;
+CREATE FUNCTION APP_GYMBRO.ClienteConMayorReservas
+
+Nombres de Tablas y Campos: Cliente, reserva, ID_Cliente, Nombre. 
+
+
+-- Esta función ContarReservasCanceladas cuenta el número de filas en la tabla Reserva donde la columna Cancelacion no es NULL, lo que indica que la reserva ha sido cancelada, cuenta el total de reservas canceladas --
+
+CREATE FUNCTION contar_reservas_canceladas()
+
+Nombres de Tablas y Campos: Reserva y Cancelacion.
+
+
+
+
+
 
 
 
