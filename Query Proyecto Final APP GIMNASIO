@@ -600,6 +600,8 @@ CALL ObtenerReservasCliente(5);
 
 -- FUNCIONES 
 
+-- La función ClienteConMayorReservas que has mostrado está diseñada para encontrar el nombre del cliente con la mayor cantidad de reservas en una base de datos -- 
+
 DROP FUNCTION IF EXISTS APP_GYMBRO.ClienteConMayorReservas;
 
 DELIMITER //
@@ -627,6 +629,31 @@ BEGIN
 END //
 
 DELIMITER ;
+
+-- Esta función ContarReservasCanceladas cuenta el número de filas en la tabla Reserva donde la columna Cancelacion no es NULL, lo que indica que la reserva ha sido cancelada.
+
+-- Función para contar reservas canceladas
+
+DELIMITER $$
+
+CREATE FUNCTION contar_reservas_canceladas()
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE cantidad_canceladas INT;
+
+    -- Contar reservas con fecha de cancelación no nula
+    SELECT COUNT(*)
+    INTO cantidad_canceladas
+    FROM Reserva
+    WHERE Cancelacion IS NOT NULL;
+
+    RETURN cantidad_canceladas;
+END $$
+
+DELIMITER ;
+
+SELECT contar_reservas_canceladas() AS TotalReservasCanceladas;
 
 -- Cada vez que se inserta un nuevo registro en la tabla reserva, este TRIGGER se activará y actualizará automáticamente la cantidad de reservas del cliente correspondiente --
 
@@ -684,10 +711,6 @@ BEGIN
 END;
 //
 
--- creacion de usuarios para DB App_Gymbro --
-
-CREATE USER 'Empleado1'@'localhost' IDENTIFIED BY '1234' ;
-
 -- Se activa después de cada inserción en la tabla Membresia y registra los nuevos datos insertados, indicando que la acción fue una inserción --
 
 CREATE TRIGGER after_membresia_insert
@@ -705,11 +728,19 @@ DELIMITER ;
 
 USE APP_GYMBRO;
 
+-- pruebas de borrar si existe y volver a crear usuarios--
+
+DROP USER IF EXISTS 'A.Marcos'@'%';
+DROP USER IF EXISTS 'UserMantenimiento'@'%';
+DROP USER IF EXISTS 'P.Juan'@'%';
+
 -- Creacion de los usuarios para los duenos y un usuario quien va a ser el encargado de mantener y actualizar la base de datos del gimnasio --
 
 CREATE USER 'P.Juan'@'%' IDENTIFIED BY 'Perezjuan-01';
 CREATE USER 'A.Marcos'@'%' IDENTIFIED BY 'Altamiranomarcos-02';
 CREATE USER 'UserMantenimiento'@'%' IDENTIFIED BY 'UserMantenimiento-01';
+
+SELECT User, Host FROM mysql.user WHERE User = 'P.Juan';
 
 -- Otorga todos los permisos en la base de datos APP_GYMBRO a los usuarios --
 
@@ -718,6 +749,7 @@ GRANT ALL PRIVILEGES ON APP_GYMBRO.* TO 'A.Marcos'@'%';
 GRANT ALL PRIVILEGES ON APP_GYMBRO.* TO 'UserMantenimiento'@'%';
 
 -- Asegurarse de que los privilegios se carguen --
+
 FLUSH PRIVILEGES;
 
 -- creacion de usuarios para cada empleado --
@@ -763,8 +795,3 @@ GRANT SELECT ON APP_GYMBRO.* TO 'S.Pedro'@'localhost';
 GRANT SELECT ON APP_GYMBRO.* TO 'M.Sofia'@'localhost';
 GRANT SELECT ON APP_GYMBRO.* TO 'G.Luis'@'localhost' ;
 GRANT SELECT ON APP_GYMBRO.* TO 'L.Ana'@'localhost';
-
--- pruebas de borrar si existe y volver a crear usuarios--
-
-DROP USER IF EXISTS 'P.Carlos'@'localhost';
-DROP USER IF EXISTS 'P.Juan'@'%';
