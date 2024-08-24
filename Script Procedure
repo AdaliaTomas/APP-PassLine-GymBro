@@ -1,3 +1,6 @@
+-- Este procedimiento ObtenerReservasCliente permite recuperar toda la información relevante sobre las reservas realizadas por un cliente específico
+en la base de datos, el cual se utilizara para la fidelizacion de clientes, poder detectar este patron y detectar mas clientes como tales --
+
 DELIMITER //
 CREATE PROCEDURE ObtenerReservasCliente(IN ID_Cliente INT)
 BEGIN
