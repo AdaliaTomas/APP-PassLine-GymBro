@@ -262,6 +262,8 @@ CREATE FUNCTION contar_reservas_canceladas()
 
 Nombres de Tablas y Campos: Reserva y Cancelacion.
 
+
+
 **TIGGERS:**
 
 -- Cada vez que se inserta un nuevo registro en la tabla reserva, este TRIGGER se activará y actualizará automáticamente la cantidad de reservas del cliente correspondiente --
@@ -289,6 +291,57 @@ AFTER UPDATE ON Membresia
 CREATE TRIGGER after_membresia_insert
 AFTER INSERT ON Membresia
 
+
+
+
+**PROCEDIMIENTOS ALMACENADOS**
+
+-- PROCEDURE. este procedimiento ObtenerReservasCliente permite recuperar toda la información relevante sobre las reservas realizadas por un cliente específico en la base de datos, el cual se utilizara para la fidelizacion de clientes, poder lograr detectar este patron y sumar mas clientes como tal --
+
+CREATE PROCEDURE ObtenerReservasCliente
+CALL ObtenerReservasCliente(5);
+
+
+
+**ROLES Y USUARIOS**
+
+Nuestra base de datos "APP PasLine GymBRO" sera relevada por los siguientes usuarios
+
+La organizacion del gimnasio se encuentra constituida por 2 socios, quienes tendran accesos ilimitados a la base, ya son quienes llevan adelante la administracion y finanzas, ambos socios, son contadores y quienes decidieron emprender en este mundo del bienestar saludable y consciente.
+
+Ellos son
+		Perez Juan ------- CREATE USER 'P.Juan'@'%' IDENTIFIED BY 'Perezjuan-01' y
+		Altamirano Marcos ------- CREATE USER 'A.Marcos'@'%' IDENTIFIED BY 'Altamiranomarcos-02'
+
+Como ellos cuentan con demasiado trabajo con la gestion y administracion del gimnasio, y sus capacidades informaticas son poco nulas, decidieron contratar un administrador de bases de datos terciarizado, quien se va a encargar de llevar adelante toda la data de la aplicacion y operacion en su gimnasio.
+
+Decidieron crear un usuario generico, para que el dia que esta persona decidan reemplazarla, pueda ingresar alguien mas y continuar facilmente con el trabajo
+
+Usuario de Mantenimiento ------- CREATE USER 'UserMantenimiento'@'%' IDENTIFIED BY 'UserMantenimiento-01'
+
+y por ultimo cada empleado tambien cuenta con su usuario, debido a que a la hora de ingresar y contabilizar sus horas de trabajo, ellos deben loguearse y asi poder identificarse en sus horarios y en sus diciplinas correspondientes.
+
+-- creacion de usuarios para cada empleado --
+
+CREATE USER 'P.Carlos'@'localhost' IDENTIFIED BY 'Pcarlos1';
+CREATE USER 'L.Ana'@'localhost' IDENTIFIED BY 'Lana2';
+CREATE USER 'G.Luis'@'localhost' IDENTIFIED BY 'Gluis3';
+CREATE USER 'M.Sofia'@'localhost' IDENTIFIED BY 'Msofia4';
+CREATE USER 'S.Pedro'@'localhost' IDENTIFIED BY 'Spedro5';
+CREATE USER 'H.Laura'@'localhost' IDENTIFIED BY 'Hlaura6';
+CREATE USER 'T.jorge'@'localhost' IDENTIFIED BY 'Tjorge7';
+CREATE USER 'R.Marta'@'localhost' IDENTIFIED BY 'Rmarta8';
+CREATE USER 'F.Jose'@'loclhost' IDENTIFIED BY 'Fjose9';
+CREATE USER 'G.Carla'@'localhost' IDENTIFIED BY 'Gcarla10';
+CREATE USER 'R.Miguel'@'localhost' IDENTIFIED BY 'Rmiguel11';
+CREATE USER 'M.Elena'@'localhost' IDENTIFIED BY 'Melena12';
+CREATE USER 'V.Daniel'@'localhost' IDENTIFIED BY 'Vdaniel13';
+CREATE USER 'C.Grabiela'@'localhost' IDENTIFIED BY 'Cgabriela14';
+CREATE USER 'R.Roberto'@'localhost' IDENTIFIED BY 'Rroberto15';
+CREATE USER 'O.Natalia'@'localhost' IDENTIFIED BY 'Onatalia16';
+CREATE USER 'H.Alberto'@'localhost' IDENTIFIED BY 'Halberto17';
+CREATE USER 'D.Sandra'@'localhost' IDENTIFIED BY 'Dsandra18';
+CREATE USER 'M.Ricardo'@'localhost' IDENTIFIED BY 'Mricardo19';
 
 
 
