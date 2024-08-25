@@ -344,14 +344,27 @@ CREATE USER 'D.Sandra'@'localhost' IDENTIFIED BY 'Dsandra18';
 CREATE USER 'M.Ricardo'@'localhost' IDENTIFIED BY 'Mricardo19';
 
 
+![image](https://github.com/user-attachments/assets/faf45b8e-341d-4ff6-9497-a36422c9173c)
 
-Problemática Resuelta:
+
+**Problemática Resuelta:**
 Esta base de datos permite gestionar eficientemente el proceso de reserva en gimnasios, desde la información de los clientes y empleados hasta la disponibilidad de sector/clase y horarios. Algunos aspectos que aborda incluyen:
 
 Registro de clientes y empleados involucrados en el proceso de reserva.
 Clasificación de las reservas según su tipo.
 Gestión de la disponibilidad de clases, horarios y sucursal en cada gimnasio.
 Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, franquicia, empleado y tipo de reserva.
-En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en gimnasios, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar las operaciones del gimnasio. */
+En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en gimnasios, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar las operaciones del gimnasio.
+
+
 
 ![image](https://github.com/user-attachments/assets/5c73027b-7851-4e28-9953-e1eba47bae7c)
+
+
+para finalizar integro el BackUp de la base de datos... y colorin colorado, este curso muy bueno y de gran aprendizaje se ha acabado.
+
+Muchas gracias profe, por la buena onda, y las predisposiciones en las clases y las consultas privadas. Que ande muy bien!
+
+**BACK UP**
+
+
