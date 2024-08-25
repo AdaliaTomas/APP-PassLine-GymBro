@@ -361,10 +361,13 @@ En resumen, esta base de datos proporciona una estructura para organizar y gesti
 ![image](https://github.com/user-attachments/assets/5c73027b-7851-4e28-9953-e1eba47bae7c)
 
 
-para finalizar integro el BackUp de la base de datos... y colorin colorado, este curso muy bueno y de gran aprendizaje se ha acabado.
-
-Muchas gracias profe, por la buena onda, y las predisposiciones en las clases y las consultas privadas. Que ande muy bien!
-
 **BACK UP**
 
+profe, tuve problemas a la hora de hacer el backup desde la terminal, me lo arroja vacio. intente tirar los comando tal cual usted lo hizo en la clase y algunos comando no me los tomaba, les dejo una imagen de prueba, igual cuelgo el back up en un drive ya que aca en github no puedo subir los archivos .sql
+
+![image](https://github.com/user-attachments/assets/acd0f978-b11a-4de8-a306-73a399414da6)
+
+Para finalizar integro el BackUp de la base de datos... y colorin colorado, este curso muy bueno y de gran aprendizaje se ha acabado.
+
+Muchas gracias profe, por la buena onda, y las predisposiciones en las clases y las consultas privadas. Que ande muy bien!
 
