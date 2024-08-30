@@ -397,11 +397,7 @@ Restaurar los datos con el SGBD de MySQL debemos entrar a la opción Data Import
 
 ![12a672b8-595d-48ff-9901-2afdc352e419](https://github.com/user-attachments/assets/601d2feb-53ad-428e-8e09-7e5096023013)
 
-profe, tuve problemas a la hora de hacer el backup desde la terminal, me lo arroja vacio. intente tirar los comando tal cual usted lo hizo en la clase y algunos comando no me los tomaba, les dejo una imagen de prueba, igual cuelgo el back up en un drive ya que aca en github no puedo subir los archivos .sql
-
-![image](https://github.com/user-attachments/assets/acd0f978-b11a-4de8-a306-73a399414da6)
-
-Para finalizar integro el BackUp de la base de datos... y colorin colorado, este curso muy bueno y de gran aprendizaje se ha acabado.
+... y colorin colorado, este curso muy bueno y de gran aprendizaje se ha acabado.
 
 Muchas gracias profe, por la buena onda, y las predisposiciones en las clases y las consultas privadas. Que ande muy bien!
 
