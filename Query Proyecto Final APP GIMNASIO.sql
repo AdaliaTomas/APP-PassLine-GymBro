@@ -16,7 +16,7 @@
 		Telefono VARCHAR(50) NOT NULL
 	);
     
-	INSERT INTO app_gymbro.Cliente (Nombre, Nacimiento, Edad, Email, Telefono) VALUES
+	INSERT INTO APP_GYMBRO.Cliente (Nombre, Nacimiento, Edad, Email, Telefono) VALUES
 	('Juan Perez', '1985-04-23', 39, 'juan.perez@example.com', '555-1234'),
 	('Maria Lopez', '1990-08-15', 34, 'maria.lopez@example.com', '555-5678'),
 	('Carlos Gomez', '1978-11-02', 45, 'carlos.gomez@example.com', '555-8765'),
@@ -63,7 +63,7 @@
 		PRIMARY	KEY (ID_Franquicia)
 	);
 
-	INSERT INTO app_gymbro.Franquicia (Nombre, Direccion, Email, Telefonos) VALUES
+	INSERT INTO APP_GYMBRO.Franquicia (Nombre, Direccion, Email, Telefonos) VALUES
 	('Gymbro Central', 'Calle Principal 123', 'central@gymbro.com', '555-1000'),
 	('Gymbro Norte', 'Avenida Norte 456', 'norte@gymbro.com', '555-2000'),
 	('Gymbro Sur', 'Calle Sur 789', 'sur@gymbro.com', '555-3000'),
@@ -86,7 +86,7 @@
 		FOREIGN KEY (ID_Franquicia) REFERENCES franquicia(ID_Franquicia)
 	);
 
-	INSERT INTO app_gymbro.Empleados (ID_Franquicia, Nombre, Telefono, Email, Descripcion) VALUES
+	INSERT INTO APP_GYMBRO.Empleados (ID_Franquicia, Nombre, Telefono, Email, Descripcion) VALUES
 	(1, 'Carlos Perez', '555-1111', 'carlos.perez@gymbro.com', 'Instructor de Yoga'),
 	(2, 'Ana Lopez', '555-2222', 'ana.lopez@gymbro.com', 'Entrenadora de Pilates'),
 	(3, 'Luis Gomez', '555-3333', 'luis.gomez@gymbro.com', 'Entrenador Personal'),
@@ -116,7 +116,7 @@ CREATE TABLE Membresia (
 );
 
 	-- Insertar datos en la tabla de Membresías
-	INSERT INTO Membresia (Tipo, Descripcion, Precio) VALUES
+	INSERT INTO APP_GYMBRO.Membresia (Tipo, Descripcion, Precio) VALUES
 	('Básica', 'Acceso limitado a las instalaciones del gimnasio, sin clases grupales.', 29.99),
 	('Estándar', 'Acceso completo a las instalaciones del gimnasio y a todas las clases grupales.', 49.99),
 	('Premium', 'Acceso completo a las instalaciones del gimnasio, todas las clases grupales, y sesiones ilimitadas con entrenadores personales.', 79.99);
@@ -131,7 +131,7 @@ CREATE TABLE Membresia (
 		Cancelacion datetime
 	);
 
-	INSERT INTO app_gymbro.TipoReserva (Tipo, Descripcion, Disponible, Cancelacion) VALUES
+	INSERT INTO APP_GYMBRO.TipoReserva (Tipo, Descripcion, Disponible, Cancelacion) VALUES
 	('Indoor', 'Reservas para actividades en espacios interiores', TRUE, '2024-07-30 12:00:00'),
 	('Aire Libre', 'Reservas para actividades al aire libre', TRUE, '2024-07-30 12:00:00'),
 	('Pileta', 'Reservas para actividades en la piscina', TRUE, '2024-07-30 12:00:00'),
@@ -146,7 +146,7 @@ CREATE TABLE Membresia (
 		Cancelacion datetime
 	);
 
-	INSERT INTO app_gymbro.TipoClase (Tipo, Descripcion, Disponible, Cancelacion) VALUES
+	INSERT INTO APP_GYMBRO.TipoClase (Tipo, Descripcion, Disponible, Cancelacion) VALUES
 	('Funcional', 'Clase de entrenamiento funcional', TRUE, '2024-07-30 12:00:00'),
 	('Yoga', 'Clase de yoga', TRUE, '2024-07-30 12:00:00'),
 	('Musculación', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
@@ -172,7 +172,7 @@ CREATE TABLE Membresia (
 
 	-- Horarios para las clases y reservas
 
-	INSERT INTO app_gymbro.Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
+	INSERT INTO APP_GYMBRO.Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
 	-- Clase de Funcional
 	(1, 1, '07:00-08:00', 'Clase de entrenamiento funcional', TRUE, '2024-07-30 12:00:00'),
 	-- Clase de Yoga
@@ -202,7 +202,7 @@ CREATE TABLE Membresia (
 
 	-- Horarios para clases de musculación
 
-	INSERT INTO app_gymbro.Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
+	INSERT INTO APP_GYMBRO.Horario (ID_TipoClase, ID_TipoReserva, Horario, Descripcion, Disponible, Cancelacion) VALUES
 	(3, 1, '08:00-09:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
 	(3, 1, '07:00-08:00', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
 	(3, 1, '08:15-09:15', 'Clase de musculación', TRUE, '2024-07-30 12:00:00'),
@@ -257,7 +257,7 @@ UPDATE Reserva SET ID_Membresia = 3 WHERE ID_Reserva IN (3, 8, 13, 18, 23);
     
 	-- Datos para la tabla Reserva
 
-	INSERT INTO Reserva (ID_Cliente, ID_Empleados, ID_Franquicia, ID_TipoReserva, ID_TipoClase, ID_Horario, Fecha, Cancelacion, ID_Membresia) VALUES
+	INSERT INTO APP_GYMBRO.Reserva (ID_Cliente, ID_Empleados, ID_Franquicia, ID_TipoReserva, ID_TipoClase, ID_Horario, Fecha, Cancelacion, ID_Membresia) VALUES
 	(1, 1, 1, 1, 1, 1, '2024-01-01 08:00:00', NULL,1),
 	(2, 2, 2, 2, 2, 2, '2024-01-02 09:00:00', NULL,2),
 	(3, 3, 3, 3, 3, 3, '2024-01-03 10:00:00', NULL,3),
@@ -368,7 +368,7 @@ CREATE TABLE HechoReserva (
 
 -- Inserciones masivas en la tabla HechoReserva--
 
-INSERT INTO HechoReserva (ID_Cliente, ID_Franquicia, ID_Empleados, ID_TipoReserva, ID_TipoClase, ID_Horario, ID_Membresia, Fecha, Costo, Asistio) VALUES
+INSERT INTO APP_GYMBRO.HechoReserva (ID_Cliente, ID_Franquicia, ID_Empleados, ID_TipoReserva, ID_TipoClase, ID_Horario, ID_Membresia, Fecha, Costo, Asistio) VALUES
 (1, 1, 1, 1, 1, 1, 1, '2024-08-01', 50.00, TRUE),
 (2, 2, 2, 1, 2, 2, 1, '2024-08-01', 40.00, FALSE),
 (3, 3, 3, 2, 3, 3, 2, '2024-08-02', 45.00, TRUE),
@@ -439,7 +439,7 @@ CREATE TABLE Audit_Membresia (
 
 -- Insertar datos en la tabla de Audit_Membresia--
 
-INSERT INTO Audit_Membresia (ID_Membresia, Tipo, Descripcion, Precio, Accion) VALUES
+INSERT INTO APP_GYMBRO.Audit_Membresia (ID_Membresia, Tipo, Descripcion, Precio, Accion) VALUES
 (1, 'Básica', 'Membresía básica con acceso a todas las áreas comunes', 29.99, 'Creación'),
 (2, 'Estándar', 'Membresía estándar con acceso completo a las instalaciones y clases grupales', 49.99, 'Creación'),
 (3, 'Premium', 'Membresía premium con acceso completo y sesiones ilimitadas con entrenadores personales', 79.99, 'Creación'),
