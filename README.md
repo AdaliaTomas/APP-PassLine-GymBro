@@ -363,6 +363,40 @@ En resumen, esta base de datos proporciona una estructura para organizar y gesti
 
 **BACK UP**
 
+Los backup o copias de seguridad son claves para el mantenimiento de las bases de datos. Es importante realizarlas de forma periódica para evitar pérdida de datos en eventuales fallas.
+El SGBD MySQL nos ofrece dos maneras de realizar Backups para respaldar nuestros datos 
+•	MySQL incluye la herramienta mysqldump dentro del motor de base de datos para gestionar las copias de seguridad. Debemos utilizarla a través de la Línea de Comandos o Terminal, de nuestro sistema operativo.
+•	Mysql Workbench cuenta también con un apartado denominado Administration, donde tenemos un set de herramientas varias. Dentro de este panel encontramos las opciones Data Export y Data Import/Restore las cuales nos permitirán realizar el backup y posteriormente su recuperación.
+
+
+![460f4de7-3362-49d9-ade3-50a2766ecd92](https://github.com/user-attachments/assets/4053a39f-274e-4ed0-a4df-12688a6cf054)
+
+
+Dentro del Data Export podremos personalizar nuestra exportación.
+•	Podemos seleccionar los schemas deseados.
+•	Al seleccionar algún schema podremos elegir que tablas y vistas queremos exportar.
+•	Podemos elegir las opciones:
+	o	Dump data only: para exportar solo los datos almacenados.
+	o	Dump structure only: para exportar solo la estructura de los objetos seleccionados.
+	o	Dump data and structure: exporta tanto los datos como la estructura de los objetos seleccionados.
+•	Podemos seleccionar si queremos exportar eventos, funciones y procedimientos almacenados y/o Triggers
+•	También se puede elegir qué tipo de backup realizar:
+	o	Export to Dump Project Folder: que vuelca a una carpeta de proyecto a la cual le podemos indicar la ruta donde se guardará la o las bases de datos generado un archivo .sql para cada objeto de la base.
+	o	Export to Self-Contained File: que genera un archivo .sql de la información seleccionada. Esta opción también permite seleccionar la carpeta donde se almacenará, y especificar el nombre del archivo.
+
+![1a0fc2e1-ec5e-490d-a42e-630668e92eda](https://github.com/user-attachments/assets/5c20553f-c74b-4eec-9fd3-f09e2936c15b)
+
+
+Restaurar los datos con el SGBD de MySQL debemos entrar a la opción Data Import/Restore en el apartado Administration y allí podemos seleccionar dos opciones:
+•	Import from Dump Proyect Folder: esta opción es válida si cuando hicimos la exportación elegimos el método Export to Dump Project Folder, por lo que seleccionaremos la carpeta que contiene los archivos de backup 
+
+![cfd22e73-e2a8-4dc3-90a5-fd61fe089615](https://github.com/user-attachments/assets/6134b57e-a2fe-4918-b815-33ba13679186)
+
+•	Import from Self-Conteined File: en esta opción seleccionaremos el archivo .sql generado en el caso de haber realizado el backup con el método Export to Self-Contained File y posteriormente el schema donde queremos restaurarlo o elegimos un nombre distinto si queremos crear un nuevo schema para la restauración.
+
+
+![12a672b8-595d-48ff-9901-2afdc352e419](https://github.com/user-attachments/assets/601d2feb-53ad-428e-8e09-7e5096023013)
+
 profe, tuve problemas a la hora de hacer el backup desde la terminal, me lo arroja vacio. intente tirar los comando tal cual usted lo hizo en la clase y algunos comando no me los tomaba, les dejo una imagen de prueba, igual cuelgo el back up en un drive ya que aca en github no puedo subir los archivos .sql
 
 ![image](https://github.com/user-attachments/assets/acd0f978-b11a-4de8-a306-73a399414da6)
